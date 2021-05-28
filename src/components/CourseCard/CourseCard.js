@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 import "./CourseCard.scss";
 
@@ -14,9 +15,9 @@ const CourseCard = ({ image, title, price, duration }) => {
       <h2 className="courseCard__price">
         <span>Price:</span> {price}
       </h2>
-      <a href="#" className="courseCard__link">
+      <Link to={`course/${"id"}`} className="courseCard__link">
         View more
-      </a>
+      </Link>
     </section>
   );
 };

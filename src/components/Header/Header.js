@@ -1,24 +1,25 @@
 import React from "react";
 import cart from "./cart.png";
+import { Link } from "react-router-dom";
 
 import "./Header.scss";
 
 const Header = () => {
   return (
     <section className="header">
-      <a href="#" className="header__title">
+      <Link to="/" className="header__title">
         Vodafone Art Academy
-      </a>
+      </Link>
       <div className="header__menu">
-        <a href="#" className="header__courses">
+        <Link to="/mycourses" className="header__courses">
           My courses
-        </a>
-        <a href="#" className="header__wishlist">
+        </Link>
+        <Link to="/wishlist" className="header__wishlist">
           Wishlist
-        </a>
-        <a href="#" className="header__cart-link">
+        </Link>
+        <Link to="/cart" className="header__cart-link">
           <img src={cart} alt="" className="header__cart-icon" />
-        </a>
+        </Link>
       </div>
     </section>
   );
