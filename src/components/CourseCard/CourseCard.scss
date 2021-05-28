@@ -1,0 +1,35 @@
+@import "colors";
+
+.courseCard {
+  padding: 30px;
+  width: 250px;
+  height: 250px;
+  background-color: $bg-color;
+
+  span {
+    font-weight: bold;
+  }
+
+  &__title {
+    font-size: 20px;
+  }
+
+  &__duration {
+    font-size: 18px;
+  }
+
+  &__price {
+    font-size: 20px;
+  }
+
+  &__link {
+    display: block;
+    text-align: center;
+    margin-top: 60px;
+    color: $dark-color;
+    &:hover {
+      font-weight: bold;
+      color: $dark-color;
+    }
+  }
+}

@@ -1,0 +1,21 @@
+@import "colors";
+
+.navbar {
+  display: flex;
+  justify-content: center;
+  position: relative;
+  top: 160px;
+
+  &__item {
+    margin: 0 30px 0 30px;
+    font-size: 20px;
+    text-decoration: underline;
+    color: $dark-color;
+    font-weight: bold;
+    transition: all 0.5s;
+    &:hover {
+      color: $dark-color;
+      transform: scale(1.2);
+    }
+  }
+}

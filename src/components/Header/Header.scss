@@ -1,0 +1,47 @@
+@import "colors";
+
+.header {
+  position: fixed;
+  top: 0;
+  padding: 0 60px 0 60px;
+  width: 100%;
+  min-height: 120px;
+  background-color: $dark-color;
+  color: #fff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 1;
+
+  a {
+    color: #fff;
+    text-decoration: none;
+  }
+
+  &__title {
+    font-size: 32px;
+  }
+
+  &__menu {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+  }
+
+  &__courses,
+  &__wishlist {
+    font-size: 24px;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  &__cart {
+    &-link {
+      width: 10%;
+    }
+    &-icon {
+      width: 100%;
+    }
+  }
+}

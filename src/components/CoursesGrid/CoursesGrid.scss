@@ -1,0 +1,10 @@
+.coursesGrid {
+  position: relative;
+  margin: 0 auto;
+  margin-top: 200px;
+  display: grid;
+  grid-template-columns: repeat(4, 250px);
+  align-self: center;
+  justify-content: center;
+  gap: 20px;
+}
