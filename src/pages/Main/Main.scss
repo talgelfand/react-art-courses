@@ -1,0 +1,12 @@
+@import "colors";
+
+.main {
+  &__title {
+    margin-top: 200px;
+    text-align: center;
+    font-size: 30px;
+    color: $dark-color;
+    font-weight: bold;
+    text-shadow: 2px 2px $accent-color;
+  }
+}
