@@ -32,6 +32,10 @@
   &__wishlist {
     font-size: 24px;
     transition: all 0.5s;
+    &-icon {
+      margin-left: 10px;
+      margin-bottom: 5px;
+    }
     &:hover {
       text-decoration: underline;
       transform: scale(1.2);

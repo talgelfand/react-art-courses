@@ -5,9 +5,33 @@
   width: 250px;
   height: 250px;
   background-color: $bg-color;
+  transition: all 1s;
 
   span {
     font-weight: bold;
+  }
+
+  &__image {
+    width: 250px;
+    height: 250px;
+    object-fit: fill;
+    filter: grayscale(30%);
+
+    &-block {
+      display: block;
+    }
+    &-none {
+      display: none;
+    }
+  }
+
+  &__content {
+    &-block {
+      display: block;
+    }
+    &-none {
+      display: none;
+    }
   }
 
   &__title {
@@ -27,8 +51,10 @@
     text-align: center;
     margin-top: 60px;
     color: $dark-color;
+    font-weight: bold;
+    transition: all 0.5s;
     &:hover {
-      font-weight: bold;
+      transform: scale(1.2);
       color: $dark-color;
     }
   }

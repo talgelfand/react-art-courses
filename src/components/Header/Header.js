@@ -1,6 +1,7 @@
 import React from "react";
 import cart from "./cart.png";
 import { Link } from "react-router-dom";
+import { FaHeart } from "react-icons/fa";
 
 import "./Header.scss";
 
@@ -16,6 +17,7 @@ const Header = () => {
         </Link>
         <Link to="/wishlist" className="header__wishlist">
           Wishlist
+          <FaHeart className="header__wishlist-icon" />
         </Link>
         <Link to="/cart" className="header__cart-link">
           <img src={cart} alt="" className="header__cart-icon" />
