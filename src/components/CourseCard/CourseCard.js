@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import monet from "./monet.jpeg";
+import { FaHeart, FaCartPlus } from "react-icons/fa";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 import "./CourseCard.scss";
 
@@ -13,6 +16,14 @@ const CourseCard = ({ image, title, price, duration }) => {
 
   const handleHoverLeave = () => {
     setIsHovered(!isHovered);
+  };
+
+  const notifyAboutAddingToWishlist = () => {
+    toast("Added to wishlist");
+  };
+
+  const notifyAboutAddingToCart = () => {
+    toast.info("Added to cart");
   };
 
   if (!isHovered) {
@@ -38,6 +49,17 @@ const CourseCard = ({ image, title, price, duration }) => {
         <h2 className="courseCard__price">
           <span>Price:</span> {price}
         </h2>
+        <div className="courseCard__icons">
+          <FaHeart
+            className="courseCard__icons-item"
+            onClick={notifyAboutAddingToWishlist}
+          />
+          <FaCartPlus
+            className="courseCard__icons-item"
+            onClick={notifyAboutAddingToCart}
+          />
+          <ToastContainer />
+        </div>
         <Link to={`course/${"id"}`} className="courseCard__link">
           View more
         </Link>
