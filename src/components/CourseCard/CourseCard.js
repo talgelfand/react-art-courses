@@ -29,7 +29,7 @@ const CourseCard = ({ image, title, price, duration }) => {
   if (!isHovered) {
     return (
       <img
-        src={monet}
+        src={image}
         alt={title}
         className="courseCard__image"
         onMouseEnter={handleHover}
