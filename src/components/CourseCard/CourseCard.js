@@ -57,12 +57,12 @@ const CourseCard = ({ image, title, price, duration }) => {
             className="courseCard__icons-item"
             onClick={notifyAboutAddingToCart}
           />
-          <ToastContainer />
         </div>
         <Link to={`course/${"id"}`} className="courseCard__link">
           View more
         </Link>
       </div>
+      <ToastContainer />
     </section>
   );
 };
