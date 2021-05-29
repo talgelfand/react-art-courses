@@ -7,7 +7,7 @@ import "react-toastify/dist/ReactToastify.css";
 import "./CourseCard.scss";
 
 const CourseCard = ({ image, title, price, duration }) => {
-  const [isHovered, setIsHovered] = useState(true);
+  const [isHovered, setIsHovered] = useState(false);
 
   const handleHover = () => {
     setIsHovered(!isHovered);
