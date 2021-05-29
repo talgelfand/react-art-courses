@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import monet from "./monet.jpeg";
 import { FaHeart, FaCartPlus } from "react-icons/fa";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -39,7 +38,7 @@ const CourseCard = ({ image, title, price, duration }) => {
 
   return (
     <section className="courseCard" onMouseLeave={handleHoverLeave}>
-      <div className={`courseCard__content-${isHovered ? "block" : "none"}`}>
+      <div className={"courseCard__content"}>
         <h1 className="courseCard__title">
           <span>Title:</span> {title}
         </h1>

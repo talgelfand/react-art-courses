@@ -1,53 +1,22 @@
 import React from "react";
 import CourseCard from "../CourseCard/CourseCard";
+import * as data from "../../data/data.json";
 
 import "./CoursesGrid.scss";
 
 const CoursesGrid = () => {
-  return (
-    <section className="coursesGrid">
+  const courses = data.courses.map((course) => {
+    return (
       <CourseCard
-        title="Andy Warhol's Art"
-        duration="5 hours"
-        price="22 euros"
+        key={course.id}
+        image={course.image}
+        title={course.title}
+        price={course.price}
+        duration={course.duration}
       />
-      <CourseCard
-        title="Andy Warhol's Art"
-        duration="5 hours"
-        price="22 euros"
-      />
-      <CourseCard
-        title="Andy Warhol's Art"
-        duration="5 hours"
-        price="22 euros"
-      />
-      <CourseCard
-        title="Andy Warhol's Art"
-        duration="5 hours"
-        price="22 euros"
-      />
-      <CourseCard
-        title="Andy Warhol's Art"
-        duration="5 hours"
-        price="22 euros"
-      />
-      <CourseCard
-        title="Andy Warhol's Art"
-        duration="5 hours"
-        price="22 euros"
-      />
-      <CourseCard
-        title="Andy Warhol's Art"
-        duration="5 hours"
-        price="22 euros"
-      />
-      <CourseCard
-        title="Andy Warhol's Art"
-        duration="5 hours"
-        price="22 euros"
-      />
-    </section>
-  );
+    );
+  });
+  return <section className="coursesGrid">{courses}</section>;
 };
 
 export default CoursesGrid;
