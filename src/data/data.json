@@ -5,56 +5,72 @@
       "image": "https://cdn.britannica.com/54/2754-004-557E360D/Poppies-oil-canvas-Claude-Monet-Musee-dOrsay-1873.jpg",
       "title": "Impressionism",
       "price": "16 euros",
-      "duration": "4 hours"
+      "duration": "4 hours",
+      "addedToWishlist": false,
+      "addedToCart": false
     },
     {
       "id": 2,
       "image": "https://images-na.ssl-images-amazon.com/images/I/41t91XjFeYL._AC_.jpg",
       "title": "Andy Warhol's art",
       "price": "12 euros",
-      "duration": "3.5 hours"
+      "duration": "3.5 hours",
+      "addedToWishlist": false,
+      "addedToCart": false
     },
     {
       "id": 3,
       "image": "https://doagahehoc242.cloudfront.net/uploads/posts/726/e2860d1c_3-sett-image-9.png",
       "title": "Jean-Michel Basquiat",
       "price": "12 euros",
-      "duration": "3 hours"
+      "duration": "3 hours",
+      "addedToWishlist": false,
+      "addedToCart": false
     },
     {
       "id": 4,
       "image": "https://media.architecturaldigest.com/photos/605a2c39261ed921906092cf/3:2/w_2530,h_1686,c_limit/basquiat.jpeg",
       "title": "Andy Warhol's art",
       "price": "12 euros",
-      "duration": "3.5 hours"
+      "duration": "3.5 hours",
+      "addedToWishlist": false,
+      "addedToCart": false
     },
     {
       "id": 5,
       "image": "https://64.media.tumblr.com/36325075a34fcef61414448ab2f6b9ce/tumblr_nmzunqQLpy1rui49ao1_r1_1280.jpg",
       "title": "Introduction to ancient art",
       "price": "20 euros",
-      "duration": "5.5 hours"
+      "duration": "5.5 hours",
+      "addedToWishlist": false,
+      "addedToCart": false
     },
     {
       "id": 6,
       "image": "https://en.opisanie-kartin.com/images/2/image2119.jpg",
       "title": "Marc Chagall",
       "price": "12 euros",
-      "duration": "3.5 hours"
+      "duration": "3.5 hours",
+      "addedToWishlist": false,
+      "addedToCart": false
     },
     {
       "id": 7,
       "image": "https://goodparentingbrighterchildren.com/wp-content/uploads/2019/03/Children-drawing-PB.jpg",
       "title": "How to teach children about art",
       "price": "16 euros",
-      "duration": "4.5 hours"
+      "duration": "4.5 hours",
+      "addedToWishlist": false,
+      "addedToCart": false
     },
     {
       "id": 8,
       "image": "https://images.firstpost.com/wp-content/uploads/2017/07/18700233_659922264200241_5489745228136063783_n-Copy.jpg",
       "title": "The life and art of Frida Kahlo",
       "price": "12 euros",
-      "duration": "3.5 hours"
+      "duration": "3.5 hours",
+      "addedToWishlist": false,
+      "addedToCart": false
     }
   ]
 }
