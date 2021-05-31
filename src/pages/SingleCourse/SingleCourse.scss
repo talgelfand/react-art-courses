@@ -1,0 +1,55 @@
+@import "colors";
+
+.singleCourse {
+  &__title {
+    margin-top: 200px;
+    text-align: center;
+    color: $primary-color;
+  }
+
+  &__content {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 50px;
+    width: 1000px;
+    margin: 0 auto;
+    margin-top: 50px;
+    justify-content: space-between;
+    align-items: stretch;
+  }
+
+  &__image {
+    width: 400px;
+    object-fit: cover;
+  }
+
+  &__descr {
+    span {
+      font-weight: bold;
+    }
+  }
+
+  &__duration,
+  &__requirements,
+  &__price {
+    font-weight: normal;
+    font-size: 20px;
+  }
+
+  &__text {
+    margin-top: 20px;
+  }
+
+  &__buttons {
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-between;
+    &-btn {
+      background-color: $accent-color;
+      border: $accent-color;
+      &:hover {
+        background-color: $primary-color;
+      }
+    }
+  }
+}

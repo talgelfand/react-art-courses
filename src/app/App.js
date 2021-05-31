@@ -9,6 +9,7 @@ import Wishlist from "../pages/Wishlist";
 import About from "../pages/About";
 import Teachers from "../pages/Teachers";
 import Contacts from "../pages/Contacts";
+import SingleCourse from "../pages/SingleCourse";
 
 const App = () => {
   return (
@@ -23,6 +24,8 @@ const App = () => {
           <Route path="/contacts" component={Contacts} />
           <Route path="/mycourses" component={MyCourses} />
           <Route path="/wishlist" component={Wishlist} />
+          <Route path="/course/:id" component={SingleCourse} />{" "}
+          {/* id is a parameter */}
           <Route path="*" component={ErrorPage} />
         </Switch>
       </Router>

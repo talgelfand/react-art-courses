@@ -9,6 +9,7 @@ const CoursesGrid = () => {
     return (
       <CourseCard
         key={course.id}
+        id={course.id}
         image={course.image}
         title={course.title}
         price={course.price}

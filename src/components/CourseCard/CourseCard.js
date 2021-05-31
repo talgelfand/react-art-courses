@@ -7,6 +7,7 @@ import "react-toastify/dist/ReactToastify.css";
 import "./CourseCard.scss";
 
 const CourseCard = ({
+  id,
   image,
   title,
   price,
@@ -71,7 +72,7 @@ const CourseCard = ({
             onClick={handleAddingToCart}
           />
         </div>
-        <Link to={`course/${"id"}`} className="courseCard__link">
+        <Link to={`course/${id}`} className="courseCard__link">
           View more
         </Link>
       </div>
