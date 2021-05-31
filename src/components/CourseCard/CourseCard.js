@@ -6,8 +6,17 @@ import "react-toastify/dist/ReactToastify.css";
 
 import "./CourseCard.scss";
 
-const CourseCard = ({ image, title, price, duration }) => {
+const CourseCard = ({
+  image,
+  title,
+  price,
+  duration,
+  isAddedToWishlist,
+  isAddedToCart,
+}) => {
   const [isHovered, setIsHovered] = useState(false);
+  const [addedToWishlist, setAddedToWishlist] = useState(false);
+  const [addedToCart, setAddedToCart] = useState(false);
 
   const handleHover = () => {
     setIsHovered(!isHovered);
@@ -17,12 +26,16 @@ const CourseCard = ({ image, title, price, duration }) => {
     setIsHovered(!isHovered);
   };
 
-  const notifyAboutAddingToWishlist = () => {
+  const handleAddingToWishlist = () => {
     toast("Added to wishlist");
+    setAddedToWishlist(true);
+    isAddedToWishlist = addedToWishlist;
   };
 
-  const notifyAboutAddingToCart = () => {
+  const handleAddingToCart = () => {
     toast.info("Added to cart");
+    setAddedToCart(true);
+    isAddedToCart = addedToCart;
   };
 
   if (!isHovered) {
@@ -51,11 +64,11 @@ const CourseCard = ({ image, title, price, duration }) => {
         <div className="courseCard__icons">
           <FaHeart
             className="courseCard__icons-item"
-            onClick={notifyAboutAddingToWishlist}
+            onClick={handleAddingToWishlist}
           />
           <FaCartPlus
             className="courseCard__icons-item"
-            onClick={notifyAboutAddingToCart}
+            onClick={handleAddingToCart}
           />
         </div>
         <Link to={`course/${"id"}`} className="courseCard__link">

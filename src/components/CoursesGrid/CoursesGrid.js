@@ -13,9 +13,12 @@ const CoursesGrid = () => {
         title={course.title}
         price={course.price}
         duration={course.duration}
+        isAddedToWishlist={course.addedToWishlist}
+        isAddedToCart={course.addedToCart}
       />
     );
   });
+
   return <section className="coursesGrid">{courses}</section>;
 };
 
