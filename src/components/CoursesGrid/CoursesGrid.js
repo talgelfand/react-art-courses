@@ -6,18 +6,7 @@ import "./CoursesGrid.scss";
 
 const CoursesGrid = () => {
   const courses = data.courses.map((course) => {
-    return (
-      <CourseCard
-        key={course.id}
-        id={course.id}
-        image={course.image}
-        title={course.title}
-        price={course.price}
-        duration={course.duration}
-        isAddedToWishlist={course.addedToWishlist}
-        isAddedToCart={course.addedToCart}
-      />
-    );
+    return <CourseCard key={course.id} {...course} />;
   });
 
   return <section className="coursesGrid">{courses}</section>;

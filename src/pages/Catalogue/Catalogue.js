@@ -7,15 +7,7 @@ import "./Catalogue.scss";
 
 const Catalogue = () => {
   const courses = data.courses.map((course) => {
-    return (
-      <CatalogueItem
-        id={course.id}
-        title={course.title}
-        duration={course.duration}
-        price={course.price}
-        image={course.image}
-      />
-    );
+    return <CatalogueItem key={course.id} {...course} />;
   });
 
   return (

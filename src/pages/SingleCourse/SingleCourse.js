@@ -8,33 +8,30 @@ import "./SingleCourse.scss";
 const SingleCourse = () => {
   const { id } = useParams();
   const course = data.courses.find((item) => item.id === parseInt(id));
-  console.table(course);
 
   if (!course) {
     return <Redirect to="/error" />;
   }
 
+  const { title, image, duration, requirements, price } = course;
+
   return (
     <section className="singleCourse">
-      <h1 className="singleCourse__title">{course.title}</h1>
+      <h1 className="singleCourse__title">{title}</h1>
       <div className="singleCourse__content">
-        <img
-          src={course.image}
-          alt={course.title}
-          className="singleCourse__image"
-        />
+        <img src={image} alt={title} className="singleCourse__image" />
         <div className="singleCourse__descr">
           <h2 className="singleCourse__duration">
             <span>Duration: </span>
-            {course.duration}
+            {duration}
           </h2>
           <h2 className="singleCourse__requirements">
             <span>Requirements: </span>
-            {course.requirements || "none"}
+            {requirements || "none"}
           </h2>
           <h2 className="singleCourse__price">
             <span>Price: </span>
-            {course.price}
+            {price}
           </h2>
           <p className="singleCourse__text">
             But I must explain to you how all this mistaken idea of denouncing

@@ -22,13 +22,14 @@ const Teachers = () => {
   }, []);
 
   const teachersList = teachers.map((teacher) => {
+    const { id, name, email, company } = teacher;
     return (
-      <li key={teacher.id} className="teachers__item">
-        <h3 className="teachers__item-title">{teacher.name}</h3>
+      <li key={id} className="teachers__item">
+        <h3 className="teachers__item-title">{name}</h3>
         <p className="teachers__item-descr">
-          {teacher.email}
+          {email}
           <br />
-          {teacher.company.catchPhrase}
+          {company.catchPhrase}
         </p>
       </li>
     );
