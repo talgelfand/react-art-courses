@@ -1,15 +1,19 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import Loading from "../../components/Loading";
 
 import "./Teachers.scss";
 
 const Teachers = () => {
   const [teachers, setTeachers] = useState([]);
+  const [loading, setLoading] = useState(true);
+
   const url = "https://jsonplaceholder.typicode.com/users";
 
   const fetchData = () => {
     axios.get(url).then((response) => {
       setTeachers(response.data);
+      setLoading(false);
     });
   };
 
@@ -29,6 +33,10 @@ const Teachers = () => {
       </li>
     );
   });
+
+  if (loading) {
+    return <Loading />;
+  }
 
   return (
     <section className="teachers">
