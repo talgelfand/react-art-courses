@@ -6,6 +6,9 @@ import MyCourses from "../pages/MyCourses";
 import ErrorPage from "../pages/ErrorPage";
 import Catalogue from "../pages/Catalogue/Catalogue";
 import Wishlist from "../pages/Wishlist";
+import About from "../pages/About";
+import Teachers from "../pages/Teachers";
+import Contacts from "../pages/Contacts";
 
 const App = () => {
   return (
@@ -14,8 +17,11 @@ const App = () => {
         <Header />
         <Switch>
           <Route exact path="/" component={Main} />
-          <Route path="/mycourses" component={MyCourses} />
+          <Route path="/about" component={About} />
+          <Route path="/teachers" component={Teachers} />
           <Route path="/catalogue" component={Catalogue} />
+          <Route path="/contacts" component={Contacts} />
+          <Route path="/mycourses" component={MyCourses} />
           <Route path="/wishlist" component={Wishlist} />
           <Route path="*" component={ErrorPage} />
         </Switch>

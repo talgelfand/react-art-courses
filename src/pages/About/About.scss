@@ -1,0 +1,13 @@
+@import "colors";
+
+.about {
+  &__title {
+    margin-top: 200px;
+    color: $primary-color;
+    text-align: center;
+  }
+
+  &__descr {
+    padding: 50px;
+  }
+}

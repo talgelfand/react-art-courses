@@ -1,0 +1,9 @@
+@import "colors";
+
+.teachers {
+  &__title {
+    margin-top: 200px;
+    color: $primary-color;
+    text-align: center;
+  }
+}

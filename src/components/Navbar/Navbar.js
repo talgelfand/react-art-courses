@@ -6,6 +6,9 @@ import "./Navbar.scss";
 const Navbar = () => {
   return (
     <section className="navbar">
+      <Link to="/about" className="navbar__item">
+        About us
+      </Link>
       <Link to="/catalogue" className="navbar__item">
         Catalogue
       </Link>
@@ -14,9 +17,6 @@ const Navbar = () => {
       </Link>
       <Link to="/contacts" className="navbar__item">
         Contacts
-      </Link>
-      <Link to="/rules" className="navbar__item">
-        Rules
       </Link>
     </section>
   );

@@ -1,0 +1,28 @@
+import React from "react";
+
+import "./About.scss";
+
+const About = () => {
+  return (
+    <section className="about">
+      <h1 className="about__title">About our academy</h1>
+      <p className="about__descr">
+        <strong>The academy was found on 22nd of May, 2021.</strong>
+        <br /> <br /> Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+        Nesciunt nobis voluptatum mollitia dolore perferendis, adipisci neque
+        sit reprehenderit cumque voluptates provident aliquam amet officia
+        error! Atque repellat quis ducimus itaque quibusdam ipsum adipisci nihil
+        recusandae quaerat! Est sit incidunt itaque illum quia eaque iusto
+        magnam provident cum doloremque officia reprehenderit, delectus fugit
+        beatae dolores consequatur nulla, aspernatur explicabo vitae laborum
+        dignissimos nostrum deleniti ad. Maxime harum voluptatibus est
+        aspernatur dicta ratione eius quibusdam rem deleniti doloremque modi
+        minima natus officiis quod totam laboriosam, commodi possimus porro?
+        Ratione cumque soluta architecto minus sint, consectetur adipisci at
+        quaerat voluptates nostrum aut perspiciatis.
+      </p>
+    </section>
+  );
+};
+
+export default About;
