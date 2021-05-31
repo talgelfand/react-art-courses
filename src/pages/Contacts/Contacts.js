@@ -10,7 +10,7 @@ const Contacts = () => {
       <h2>Here will be a contact form</h2>
       <Card className="contacts__card">
         <CardBody>
-          <CardTitle>Contact Details</CardTitle>
+          <CardTitle className="contacts__details">Contact Details</CardTitle>
           <ul>
             <li>
               <span>E-mail: </span>
