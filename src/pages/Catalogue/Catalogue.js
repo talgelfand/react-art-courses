@@ -1,15 +1,6 @@
 import React from "react";
-import { Link } from "react-router-dom";
-import {
-  Card,
-  CardBody,
-  CardImg,
-  CardSubtitle,
-  CardText,
-  CardTitle,
-  Form,
-  Input,
-} from "reactstrap";
+import { Form, Input } from "reactstrap";
+import CatalogueItem from "../../components/CatalogueItem";
 import * as data from "../../data/data.json";
 
 import "./Catalogue.scss";
@@ -17,17 +8,13 @@ import "./Catalogue.scss";
 const Catalogue = () => {
   const courses = data.courses.map((course) => {
     return (
-      <Card key={course.id} className="catalogue__card">
-        <CardBody>
-          <CardTitle className="catalogue__card-title">
-            {course.title}
-          </CardTitle>
-          <CardSubtitle>{course.duration}</CardSubtitle>
-          <CardText>{course.price}</CardText>
-          <Link to="/course">View more</Link>
-        </CardBody>
-        <CardImg src={course.image} />
-      </Card>
+      <CatalogueItem
+        id={course.id}
+        title={course.title}
+        duration={course.duration}
+        price={course.price}
+        image={course.image}
+      />
     );
   });
 
