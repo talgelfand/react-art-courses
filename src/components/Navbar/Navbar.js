@@ -1,24 +1,35 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import styled from "styled-components";
 
-import "./Navbar.scss";
+const Section = styled.section`
+  display: flex;
+  justify-content: center;
+  position: relative;
+  top: 160px;
+`;
+
+const StyledLink = styled(Link)`
+  margin: 0 30px 0 30px;
+  font-size: 20px;
+  text-decoration: none;
+  color: var(--primary-color);
+  font-weight: bold;
+  transition: all 0.5s;
+  &:hover {
+    color: var(--dark-color);
+    transform: scale(1.2);
+  }
+`;
 
 const Navbar = () => {
   return (
-    <section className="navbar">
-      <Link to="/about" className="navbar__item">
-        About us
-      </Link>
-      <Link to="/catalogue" className="navbar__item">
-        Catalogue
-      </Link>
-      <Link to="/teachers" className="navbar__item">
-        Teachers
-      </Link>
-      <Link to="/contacts" className="navbar__item">
-        Contacts
-      </Link>
-    </section>
+    <Section>
+      <StyledLink to="/about">About us</StyledLink>
+      <StyledLink to="/catalogue">Catalogue</StyledLink>
+      <StyledLink to="/teachers">Teachers</StyledLink>
+      <StyledLink to="/contacts">Contacts</StyledLink>
+    </Section>
   );
 };
 

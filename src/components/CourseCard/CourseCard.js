@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { FaHeart, FaCartPlus } from "react-icons/fa";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+// import styled from "styled-components";
 
 import "./CourseCard.scss";
 

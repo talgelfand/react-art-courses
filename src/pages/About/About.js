@@ -1,12 +1,21 @@
 import React from "react";
+import styled from "styled-components";
 
-import "./About.scss";
+const Title = styled.h1`
+  margin-top: 200px;
+  color: var(--primary-color);
+  text-align: center;
+`;
+
+const Description = styled.p`
+  padding: 50px 150px 0 150px;
+`;
 
 const About = () => {
   return (
-    <section className="about">
-      <h1 className="about__title">About our academy</h1>
-      <p className="about__descr">
+    <>
+      <Title>About our academy</Title>
+      <Description>
         <strong>The academy was found on 22nd of May, 2021.</strong>
         <br /> <br /> Lorem ipsum, dolor sit amet consectetur adipisicing elit.
         Nesciunt nobis voluptatum mollitia dolore perferendis, adipisci neque
@@ -20,8 +29,8 @@ const About = () => {
         minima natus officiis quod totam laboriosam, commodi possimus porro?
         Ratione cumque soluta architecto minus sint, consectetur adipisci at
         quaerat voluptates nostrum aut perspiciatis.
-      </p>
-    </section>
+      </Description>
+    </>
   );
 };
 

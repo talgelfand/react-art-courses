@@ -9,8 +9,6 @@ import {
 } from "reactstrap";
 import { Link } from "react-router-dom";
 
-import "./CatalogueItem.scss";
-
 const CatalogueItem = ({ id, title, image, duration, price }) => {
   return (
     <section className="catalogueItem">
