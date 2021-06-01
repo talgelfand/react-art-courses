@@ -1,16 +1,33 @@
 import React from "react";
 import { Card, CardBody, CardTitle } from "reactstrap";
+import styled from "styled-components";
 
-import "./Contacts.scss";
+const Title = styled.h1`
+  margin-top: 200px;
+  color: var(--primary-color);
+  text-align: center;
+`;
+
+const Details = styled(CardTitle)`
+  font-weight: bold;
+  text-align: center;
+`;
+
+const StyledCard = styled(Card)`
+  width: 400px;
+  display: block;
+  margin: 0 auto;
+  margin-top: 50px;
+`;
 
 const Contacts = () => {
   return (
-    <section className="contacts">
-      <h1 className="contacts__title">Contact us</h1>
+    <>
+      <Title>Contact us</Title>
       <h2>Here will be a contact form</h2>
-      <Card className="contacts__card">
+      <StyledCard>
         <CardBody>
-          <CardTitle className="contacts__details">Contact Details</CardTitle>
+          <Details>Contact Details</Details>
           <ul>
             <li>
               <span>E-mail: </span>
@@ -27,8 +44,8 @@ const Contacts = () => {
             </li>
           </ul>
         </CardBody>
-      </Card>
-    </section>
+      </StyledCard>
+    </>
   );
 };
 

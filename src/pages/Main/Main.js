@@ -1,16 +1,24 @@
 import React from "react";
 import CoursesGrid from "../../components/CoursesGrid";
 import Navbar from "../../components/Navbar";
+import styled from "styled-components";
 
-import "./Main.scss";
+const Title = styled.h1`
+  margin-top: 200px;
+  text-align: center;
+  font-size: 30px;
+  color: var(--dark-color);
+  font-weight: bold;
+  text-shadow: 2px 2px var(--accent-color);
+`;
 
 const Main = () => {
   return (
-    <section className="main">
+    <>
       <Navbar />
-      <h1 className="main__title">Our best courses</h1>
+      <Title>Our best courses</Title>
       <CoursesGrid />
-    </section>
+    </>
   );
 };
 

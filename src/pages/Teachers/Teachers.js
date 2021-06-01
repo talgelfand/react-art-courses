@@ -38,7 +38,6 @@ const Teachers = () => {
   const fetchData = () => {
     axios.get(url).then((response) => {
       setTeachers(response.data.data);
-      console.table(response.data.data);
       setLoading(false);
     });
   };
