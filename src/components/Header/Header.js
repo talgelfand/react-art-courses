@@ -22,6 +22,9 @@ const Title = styled(Link)`
   color: #fff;
   text-decoration: none;
   font-size: 32px;
+  &:hover {
+    color: #fff;
+  }
 `;
 
 const Menu = styled.div`
