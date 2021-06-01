@@ -1,18 +1,44 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Loading from "../../components/Loading";
+import styled from "styled-components";
+import { Card, CardBody, CardImg, CardSubtitle, CardTitle } from "reactstrap";
 
-import "./Teachers.scss";
+const Title = styled.h1`
+  margin-top: 200px;
+  color: var(--primary-color);
+  text-align: center;
+`;
+
+const List = styled.ul`
+  margin-top: 40px;
+`;
+
+const StyledCard = styled(Card)`
+  width: 650px;
+  display: flex;
+  flex-direction: row;
+  margin: 0 auto;
+  margin-top: 30px;
+`;
+
+const Image = styled(CardImg)`
+  width: 200px;
+  height: 150px;
+  object-fit: cover;
+  filter: grayscale(30%);
+`;
 
 const Teachers = () => {
   const [teachers, setTeachers] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  const url = "https://jsonplaceholder.typicode.com/users";
+  const url = "https://reqres.in/api/users?page=1";
 
   const fetchData = () => {
     axios.get(url).then((response) => {
-      setTeachers(response.data);
+      setTeachers(response.data.data);
+      console.table(response.data.data);
       setLoading(false);
     });
   };
@@ -22,16 +48,15 @@ const Teachers = () => {
   }, []);
 
   const teachersList = teachers.map((teacher) => {
-    const { id, name, email, company } = teacher;
+    const { id, first_name, last_name, email, avatar } = teacher;
     return (
-      <li key={id} className="teachers__item">
-        <h3 className="teachers__item-title">{name}</h3>
-        <p className="teachers__item-descr">
-          {email}
-          <br />
-          {company.catchPhrase}
-        </p>
-      </li>
+      <StyledCard key={id}>
+        <Image src={avatar} alt={first_name} />
+        <CardBody>
+          <CardTitle>{`${first_name}  ${last_name}`}</CardTitle>
+          <CardSubtitle>{email}</CardSubtitle>
+        </CardBody>
+      </StyledCard>
     );
   });
 
@@ -40,10 +65,10 @@ const Teachers = () => {
   }
 
   return (
-    <section className="teachers">
-      <h1 className="teachers__title">Our teachers</h1>
-      <ul className="teachers__list">{teachersList}</ul>
-    </section>
+    <>
+      <Title>Our teachers</Title>
+      <List>{teachersList}</List>
+    </>
   );
 };
 
