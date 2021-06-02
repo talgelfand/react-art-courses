@@ -3,6 +3,8 @@ import { Redirect, useParams } from "react-router-dom";
 import * as data from "../../data/data.json";
 import { Button } from "reactstrap";
 import { Context } from "../../context/context";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 import "./SingleCourse.scss";
 
@@ -17,11 +19,17 @@ const SingleCourse = () => {
   }
 
   const addToCart = () => {
-    cartItems.push(course);
+    if (!cartItems.includes(course)) {
+      toast.info("Added to cart");
+      cartItems.push(course);
+    }
   };
 
   const addToWishlist = () => {
-    wishlistItems.push(course);
+    if (!wishlistItems.includes(course)) {
+      toast("Added to wishlist");
+      wishlistItems.push(course);
+    }
   };
 
   const { title, image, duration, requirements, price } = course;
@@ -74,6 +82,7 @@ const SingleCourse = () => {
           </div>
         </div>
       </div>
+      <ToastContainer />
     </section>
   );
 };

@@ -1,8 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { FaHeart, FaCartPlus } from "react-icons/fa";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+
 // import styled from "styled-components";
 
 import "./CourseCard.scss";
@@ -27,12 +26,10 @@ const CourseCard = ({
   };
 
   const handleAddingToWishlist = () => {
-    toast("Added to wishlist");
     addToWishlist();
   };
 
   const handleAddingToCart = () => {
-    toast.info("Added to cart");
     addToCart();
   };
 
@@ -73,7 +70,6 @@ const CourseCard = ({
           View more
         </Link>
       </div>
-      <ToastContainer />
     </section>
   );
 };

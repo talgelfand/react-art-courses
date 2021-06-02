@@ -33,7 +33,11 @@ const StyledButton = styled(Button)`
   margin-top: 20px;
 `;
 
-const CartItem = ({ id, title, image, duration, price }) => {
+const CartItem = ({ id, title, image, duration, price, removeItem }) => {
+  const handleRemoving = (id) => {
+    removeItem(id);
+  };
+
   return (
     <StyledCard key={id}>
       <CardBody>
@@ -41,7 +45,7 @@ const CartItem = ({ id, title, image, duration, price }) => {
         <CardSubtitle>{duration}</CardSubtitle>
         <CardText>{price}</CardText>
         <Link to={`/course/${id}`}>View more</Link>
-        <StyledButton>Remove</StyledButton>
+        <StyledButton onClick={() => handleRemoving(id)}>Remove</StyledButton>
       </CardBody>
       <Image src={image} alt={title} />
     </StyledCard>

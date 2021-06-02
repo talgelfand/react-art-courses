@@ -21,22 +21,32 @@ const StyledButton = styled(Button)`
   font-size: 22px;
 `;
 
+const TotalItems = styled.h3`
+  font-size: 18px;
+`;
+
 const TotalPrice = styled.h2`
-  text-align: center;
   margin-top: 20px;
   font-size: 20px;
 `;
 
 const Checkout = styled(Button)`
   display: block;
-  margin: 0 auto;
-  margin-top: 20px;
   background-color: var(--accent-color);
   border-color: var(--accent-color);
   &:hover {
     background-color: var(--primary-color);
     border-color: var(--primary-color);
   }
+`;
+
+const Wrapper = styled.div`
+  display: flex;
+  width: 650px;
+  margin: 0 auto;
+  margin-top: 40px;
+  justify-content: space-between;
+  align-items: center;
 `;
 
 const Cart = () => {
@@ -55,11 +65,12 @@ const Cart = () => {
     return totalPrice;
   };
 
-  console.table(cartItems);
-  console.log(totalPrice);
-
   const courses = cartItems.map((item) => {
-    return <CartItem key={item.id} {...item} />;
+    const removeItem = (id) => {
+      const newItems = cartItems.filter((item) => item.id !== id);
+      setCartItems(newItems);
+    };
+    return <CartItem key={item.id} {...item} removeItem={removeItem} />;
   });
 
   if (courses.length === 0) {
@@ -72,8 +83,13 @@ const Cart = () => {
       <StyledButton color="link" onClick={clearAllCourses}>
         Clear all
       </StyledButton>
-      <TotalPrice>{`Total: ${countTotalPrice()} euros`}</TotalPrice>
-      <Checkout>Go to checkout</Checkout>
+      <Wrapper>
+        <div>
+          <TotalItems>2 courses</TotalItems>
+          <TotalPrice>{`Total: ${countTotalPrice()} euros`}</TotalPrice>
+        </div>
+        <Checkout>Go to checkout</Checkout>
+      </Wrapper>
     </Section>
   );
 };

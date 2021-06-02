@@ -29,7 +29,12 @@ const Wishlist = () => {
   };
 
   const courses = wishlistItems.map((item) => {
-    return <WishlistItem key={item.id} {...item} />;
+    const removeItem = (id) => {
+      const newItems = wishlistItems.filter((item) => item.id !== id);
+      setWishlistItems(newItems);
+    };
+
+    return <WishlistItem key={item.id} {...item} removeItem={removeItem} />;
   });
 
   if (courses.length === 0) {

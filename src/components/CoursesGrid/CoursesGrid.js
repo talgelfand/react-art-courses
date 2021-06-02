@@ -3,6 +3,8 @@ import CourseCard from "../CourseCard/CourseCard";
 import * as data from "../../data/data.json";
 import styled from "styled-components";
 import { Context } from "../../context/context";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Section = styled.section`
   position: relative;
@@ -19,11 +21,17 @@ const CoursesGrid = () => {
 
   const courses = data.courses.map((course) => {
     const addToCart = () => {
-      cartItems.push(course);
+      if (!cartItems.includes(course)) {
+        toast.info("Added to cart");
+        cartItems.push(course);
+      }
     };
 
     const addToWishlist = () => {
-      wishlistItems.push(course);
+      if (!wishlistItems.includes(course)) {
+        toast("Added to wishlist");
+        wishlistItems.push(course);
+      }
     };
 
     return (
@@ -36,7 +44,12 @@ const CoursesGrid = () => {
     );
   });
 
-  return <Section>{courses}</Section>;
+  return (
+    <Section>
+      {courses}
+      <ToastContainer />
+    </Section>
+  );
 };
 
 export default CoursesGrid;
