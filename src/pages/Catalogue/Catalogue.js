@@ -2,8 +2,14 @@ import React from "react";
 import { Form, Input } from "reactstrap";
 import CatalogueItem from "../../components/CatalogueItem";
 import * as data from "../../data/data.json";
+import styled from "styled-components";
 
-import "./Catalogue.scss";
+const Search = styled(Input)`
+  display: block;
+  margin: 0 auto;
+  margin-top: 200px;
+  max-width: 400px;
+`;
 
 const Catalogue = () => {
   const courses = data.courses.map((course) => {
@@ -13,7 +19,7 @@ const Catalogue = () => {
   return (
     <section className="catalogue">
       <Form onSubmit={() => alert("Submitted")}>
-        <Input className="catalogue__search" type="text" placeholder="Search" />
+        <Search type="text" placeholder="Search" />
       </Form>
       {courses}
     </section>

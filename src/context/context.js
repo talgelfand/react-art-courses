@@ -7,7 +7,9 @@ const ContextProvider = ({ children }) => {
   const [wishlistItems, setWishlistItems] = useState([]);
 
   return (
-    <Context.Provider value={{ cartItems, wishlistItems, setWishlistItems }}>
+    <Context.Provider
+      value={{ cartItems, wishlistItems, setCartItems, setWishlistItems }}
+    >
       {children}
     </Context.Provider>
   );

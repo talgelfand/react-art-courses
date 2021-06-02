@@ -11,6 +11,18 @@ import {
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 
+const StyledCard = styled(Card)`
+  width: 650px;
+  display: flex;
+  flex-direction: row;
+  margin: 0 auto;
+  margin-top: 30px;
+`;
+
+const Title = styled(CardTitle)`
+  font-weight: bold;
+`;
+
 const Image = styled(CardImg)`
   width: 200px;
   object-fit: cover;
@@ -24,18 +36,16 @@ const StyledButton = styled(Button)`
 
 const WishlistItem = ({ id, title, image, duration, price }) => {
   return (
-    <section className="catalogueItem">
-      <Card key={id} className="catalogue__card">
-        <CardBody>
-          <CardTitle className="catalogue__card-title">{title}</CardTitle>
-          <CardSubtitle>{duration}</CardSubtitle>
-          <CardText>{price}</CardText>
-          <Link to={`/course/${id}`}>View more</Link>
-          <StyledButton>Remove</StyledButton>
-        </CardBody>
-        <Image src={image} alt={title} />
-      </Card>
-    </section>
+    <StyledCard key={id}>
+      <CardBody>
+        <Title>{title}</Title>
+        <CardSubtitle>{duration}</CardSubtitle>
+        <CardText>{price}</CardText>
+        <Link to={`/course/${id}`}>View more</Link>
+        <StyledButton>Remove</StyledButton>
+      </CardBody>
+      <Image src={image} alt={title} />
+    </StyledCard>
   );
 };
 
