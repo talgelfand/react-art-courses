@@ -18,24 +18,20 @@ const CoursesGrid = () => {
   const { cartItems, wishlistItems } = useContext(Context);
 
   const courses = data.courses.map((course) => {
-    const addToCart = (id) => {
-      if (course.id === id) {
-        cartItems.push(course);
-      }
+    const addToCart = () => {
+      cartItems.push(course);
     };
 
-    const addToWishlist = (id) => {
-      if (course.id === id) {
-        wishlistItems.push(course);
-      }
+    const addToWishlist = () => {
+      wishlistItems.push(course);
     };
 
     return (
       <CourseCard
         key={course.id}
         {...course}
-        addToCart={() => addToCart(course.id)}
-        addToWishlist={() => addToWishlist(course.id)}
+        addToCart={addToCart}
+        addToWishlist={addToWishlist}
       />
     );
   });

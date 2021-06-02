@@ -28,12 +28,12 @@ const CourseCard = ({
 
   const handleAddingToWishlist = () => {
     toast("Added to wishlist");
-    addToWishlist(id);
+    addToWishlist();
   };
 
   const handleAddingToCart = () => {
     toast.info("Added to cart");
-    addToCart(id);
+    addToCart();
   };
 
   if (!isHovered) {
