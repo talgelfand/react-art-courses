@@ -52,6 +52,7 @@ const Wrapper = styled.div`
 const Cart = () => {
   const { cartItems, setCartItems } = useContext(Context);
   let totalPrice = 0;
+  const amountOfCourses = cartItems.length;
 
   const clearAllCourses = () => {
     setCartItems([]);
@@ -85,7 +86,7 @@ const Cart = () => {
       </StyledButton>
       <Wrapper>
         <div>
-          <TotalItems>2 courses</TotalItems>
+          <TotalItems>{`${amountOfCourses} course(s)`}</TotalItems>
           <TotalPrice>{`Total: ${countTotalPrice()} euros`}</TotalPrice>
         </div>
         <Checkout>Go to checkout</Checkout>
