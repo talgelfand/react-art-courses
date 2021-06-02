@@ -1,24 +1,49 @@
-import React from "react";
-import { Card, CardBody, CardTitle } from "reactstrap";
-import * as data from "../../data/data.json";
+import React, { useContext } from "react";
+import { Context } from "../../context/context";
+import styled from "styled-components";
+import WishlistItem from "../../components/WishlistItem";
+import { Button } from "reactstrap";
 
-import "./Wishlist.scss";
+const Section = styled.section`
+  margin-top: 200px;
+`;
+
+const Title = styled.h1`
+  margin-top: 200px;
+  text-align: center;
+  color: var(--primary-color);
+`;
+
+const StyledButton = styled(Button)`
+  display: block;
+  margin: 0 auto;
+  margin-top: 20px;
+  font-size: 22px;
+`;
 
 const Wishlist = () => {
-  const courses = data.courses.map((course) => {
-    if (!course.addedToWishlist) {
-      return null;
-    }
+  const { wishlistItems, setWishlistItems } = useContext(Context);
 
-    return (
-      <Card key={course.id}>
-        <CardBody>
-          <CardTitle>{course.title}</CardTitle>
-        </CardBody>
-      </Card>
-    );
+  const clearAllCourses = () => {
+    setWishlistItems([]);
+  };
+
+  const courses = wishlistItems.map((item) => {
+    return <WishlistItem key={item.id} {...item} />;
   });
-  return <section className="wishlist">{courses}</section>;
+
+  if (courses.length === 0) {
+    return <Title>No courses saved to wishlist</Title>;
+  }
+
+  return (
+    <Section>
+      {courses}
+      <StyledButton color="link" onClick={clearAllCourses}>
+        Clear all
+      </StyledButton>
+    </Section>
+  );
 };
 
 export default Wishlist;

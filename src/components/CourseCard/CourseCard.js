@@ -13,12 +13,10 @@ const CourseCard = ({
   title,
   price,
   duration,
-  isAddedToWishlist,
-  isAddedToCart,
+  addToWishlist,
+  addToCart,
 }) => {
   const [isHovered, setIsHovered] = useState(false);
-  const [addedToWishlist, setAddedToWishlist] = useState(false);
-  const [addedToCart, setAddedToCart] = useState(false);
 
   const handleHover = () => {
     setIsHovered(!isHovered);
@@ -30,14 +28,12 @@ const CourseCard = ({
 
   const handleAddingToWishlist = () => {
     toast("Added to wishlist");
-    setAddedToWishlist(true);
-    isAddedToWishlist = addedToWishlist;
+    addToWishlist(id);
   };
 
   const handleAddingToCart = () => {
     toast.info("Added to cart");
-    setAddedToCart(true);
-    isAddedToCart = addedToCart;
+    addToCart(id);
   };
 
   if (!isHovered) {

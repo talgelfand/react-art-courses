@@ -6,18 +6,23 @@ import {
   CardBody,
   CardText,
   CardImg,
+  Button,
 } from "reactstrap";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 const Image = styled(CardImg)`
   width: 200px;
-  height: 150px;
   object-fit: cover;
   filter: grayscale(30%);
 `;
 
-const CatalogueItem = ({ id, title, image, duration, price }) => {
+const StyledButton = styled(Button)`
+  display: block;
+  margin-top: 20px;
+`;
+
+const WishlistItem = ({ id, title, image, duration, price }) => {
   return (
     <section className="catalogueItem">
       <Card key={id} className="catalogue__card">
@@ -26,6 +31,7 @@ const CatalogueItem = ({ id, title, image, duration, price }) => {
           <CardSubtitle>{duration}</CardSubtitle>
           <CardText>{price}</CardText>
           <Link to={`/course/${id}`}>View more</Link>
+          <StyledButton>Remove</StyledButton>
         </CardBody>
         <Image src={image} alt={title} />
       </Card>
@@ -33,4 +39,4 @@ const CatalogueItem = ({ id, title, image, duration, price }) => {
   );
 };
 
-export default CatalogueItem;
+export default WishlistItem;

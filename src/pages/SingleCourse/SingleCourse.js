@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Redirect, useParams } from "react-router-dom";
 import * as data from "../../data/data.json";
 import { Button } from "reactstrap";
+import { Context } from "../../context/context";
 
 import "./SingleCourse.scss";
 
@@ -9,9 +10,19 @@ const SingleCourse = () => {
   const { id } = useParams();
   const course = data.courses.find((item) => item.id === parseInt(id));
 
+  const { cartItems, wishlistItems } = useContext(Context);
+
   if (!course) {
     return <Redirect to="/error" />;
   }
+
+  const addToCart = () => {
+    cartItems.push(course);
+  };
+
+  const addToWishlist = () => {
+    wishlistItems.push(course);
+  };
 
   const { title, image, duration, requirements, price } = course;
 
@@ -51,8 +62,13 @@ const SingleCourse = () => {
             or one who avoids a pain that produces no resultant pleasure?
           </p>
           <div className="singleCourse__buttons">
-            <Button className="singleCourse__buttons-btn">Add to cart</Button>
-            <Button className="singleCourse__buttons-btn">
+            <Button className="singleCourse__buttons-btn" onClick={addToCart}>
+              Add to cart
+            </Button>
+            <Button
+              className="singleCourse__buttons-btn"
+              onClick={addToWishlist}
+            >
               Add to wishlist
             </Button>
           </div>
