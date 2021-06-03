@@ -24,6 +24,8 @@ const CoursesGrid = () => {
       if (!cartItems.includes(course)) {
         toast.info("Added to cart");
         cartItems.push(course);
+      } else {
+        toast.error("This course is already in the cart");
       }
     };
 
@@ -31,6 +33,8 @@ const CoursesGrid = () => {
       if (!wishlistItems.includes(course)) {
         toast("Added to wishlist");
         wishlistItems.push(course);
+      } else {
+        toast.error("This course is already in the wishlist");
       }
     };
 
