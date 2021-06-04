@@ -9,7 +9,7 @@ const Title = styled.h1`
   font-size: 30px;
   color: var(--dark-color);
   font-weight: bold;
-  text-shadow: 2px 2px var(--accent-color);
+  text-shadow: 1px 1px var(--accent-color);
 `;
 
 const Main = () => {
