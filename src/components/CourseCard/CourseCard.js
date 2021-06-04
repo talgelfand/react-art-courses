@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { FaHeart, FaCartPlus } from "react-icons/fa";
+import { useSpring, config, animated } from "react-spring";
 
 // import styled from "styled-components";
 
@@ -33,14 +34,24 @@ const CourseCard = ({
     addToCart();
   };
 
+  const fadeStyles = useSpring({
+    config: { ...config.stiff, friction: 18 },
+    from: { opacity: 1 },
+    to: {
+      opacity: !isHovered ? 1 : 0,
+    },
+  });
+
   if (!isHovered) {
     return (
-      <img
-        src={image}
-        alt={title}
-        className="courseCard__image"
-        onMouseEnter={handleHover}
-      />
+      <animated.div style={fadeStyles}>
+        <img
+          src={image}
+          alt={title}
+          className="courseCard__image"
+          onMouseEnter={handleHover}
+        />
+      </animated.div>
     );
   }
 
