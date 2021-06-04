@@ -4,7 +4,7 @@
   &__title {
     margin-top: 200px;
     text-align: center;
-    color: $primary-color;
+    color: var(--dark-color);
   }
 
   &__content {
@@ -45,10 +45,10 @@
     display: flex;
     justify-content: space-between;
     &-btn {
-      background-color: $accent-color;
-      border: $accent-color;
+      background-color: var(--accent-color);
+      border: var(--accent-color);
       &:hover {
-        background-color: $primary-color;
+        background-color: var(--dark-color);
       }
     }
   }

@@ -13,11 +13,11 @@ const StyledLink = styled(Link)`
   margin: 0 30px 0 30px;
   font-size: 20px;
   text-decoration: none;
-  color: var(--primary-color);
+  color: var(--dark-color);
   font-weight: bold;
   transition: all 0.5s;
   &:hover {
-    color: var(--dark-color);
+    color: var(--primary-color);
     transform: scale(1.2);
   }
 `;

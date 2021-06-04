@@ -39,7 +39,7 @@ const StyledLink = styled(Link)`
   font-size: 24px;
   transition: all 0.5s;
   &:hover {
-    color: var(--accent-color);
+    color: var(--primary-color);
     transform: scale(1.2);
   }
 `;

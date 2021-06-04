@@ -6,7 +6,7 @@ import { Card, CardBody, CardImg, CardSubtitle, CardTitle } from "reactstrap";
 
 const Title = styled.h1`
   margin-top: 200px;
-  color: var(--primary-color);
+  color: var(--dark-color);
   text-align: center;
 `;
 

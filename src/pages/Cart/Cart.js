@@ -11,7 +11,7 @@ const Section = styled.section`
 const Title = styled.h1`
   margin-top: 200px;
   text-align: center;
-  color: var(--primary-color);
+  color: var(--dark-color);
 `;
 
 const StyledButton = styled(Button)`
