@@ -12,14 +12,15 @@ const Section = styled.section`
 
 const StyledSpinner = styled(Spinner)`
   margin: 0 20px;
+  background-color: var(--primary-color);
 `;
 
 const Loading = () => {
   return (
     <Section>
-      <StyledSpinner type="grow" color="primary" children="" />
-      <StyledSpinner type="grow" color="primary" children="" />
-      <StyledSpinner type="grow" color="primary" children="" />
+      <StyledSpinner type="grow" children="" />
+      <StyledSpinner type="grow" children="" />
+      <StyledSpinner type="grow" children="" />
     </Section>
   );
 };
