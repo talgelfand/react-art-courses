@@ -12,6 +12,12 @@ const Search = styled(Input)`
   max-width: 400px;
 `;
 
+const Title = styled.h1`
+  margin-top: 100px;
+  text-align: center;
+  color: var(--dark-color);
+`;
+
 const Catalogue = () => {
   const [initialSearch, setInitialSearch] = useState("");
   const [searchParam] = useState(["title"]); // search only by title
@@ -38,7 +44,11 @@ const Catalogue = () => {
           onChange={(e) => setInitialSearch(e.target.value)}
         />
       </Form>
-      {searchedCourses}
+      {searchedCourses.length === 0 ? (
+        <Title>No courses were found</Title>
+      ) : (
+        searchedCourses
+      )}
     </section>
   );
 };
