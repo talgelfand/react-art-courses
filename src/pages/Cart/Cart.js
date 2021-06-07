@@ -3,6 +3,7 @@ import { Context } from "../../context/context";
 import styled from "styled-components";
 import { Button } from "reactstrap";
 import CartItem from "../../components/CartItem";
+import { remove } from "../../utils/utils";
 
 const Section = styled.section`
   margin-top: 200px;
@@ -69,8 +70,10 @@ const Cart = () => {
   const courses = cartItems.map((item) => {
     const removeItem = (id) => {
       const newItems = cartItems.filter((item) => item.id !== id);
+      // const newItems = remove(cartItems, id);
       setCartItems(newItems);
     };
+
     return <CartItem key={item.id} {...item} removeItem={removeItem} />;
   });
 

@@ -3,8 +3,9 @@ import CourseCard from "../CourseCard/CourseCard";
 import * as data from "../../data/data.json";
 import styled from "styled-components";
 import { Context } from "../../context/context";
-import { ToastContainer, toast } from "react-toastify";
+import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { add } from "../../utils/utils";
 
 const Section = styled.section`
   position: relative;
@@ -21,21 +22,11 @@ const CoursesGrid = () => {
 
   const courses = data.courses.map((course) => {
     const addToCart = () => {
-      if (!cartItems.includes(course)) {
-        toast.info("Added to cart");
-        cartItems.push(course);
-      } else {
-        toast.error("This course is already in the cart");
-      }
+      add(cartItems, course);
     };
 
     const addToWishlist = () => {
-      if (!wishlistItems.includes(course)) {
-        toast("Added to wishlist");
-        wishlistItems.push(course);
-      } else {
-        toast.error("This course is already in the wishlist");
-      }
+      add(wishlistItems, course);
     };
 
     return (
