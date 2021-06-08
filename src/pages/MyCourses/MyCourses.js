@@ -11,6 +11,7 @@ const MyCourses = () => {
         <li>Course 2</li>
         <li>Course 3</li>
         <li>Course 4</li>
+        <p>TODO tabs: completed courses and the ones in progress</p>
       </ul>
     </section>
   );

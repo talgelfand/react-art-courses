@@ -1,15 +1,21 @@
-import React from "react";
+import React, { useState } from "react";
 import cart from "./cart.png";
 import { Link } from "react-router-dom";
 import { FaHeart } from "react-icons/fa";
 import styled from "styled-components";
+import {
+  Dropdown,
+  DropdownItem,
+  DropdownMenu,
+  DropdownToggle,
+} from "reactstrap";
 
 const Section = styled.section`
   position: fixed;
   top: 0;
   padding: 0 60px 0 60px;
   width: 100%;
-  min-height: 120px;
+  min-height: 100px;
   background-color: var(--dark-color);
   color: #fff;
   display: flex;
@@ -36,7 +42,7 @@ const Menu = styled.div`
 const StyledLink = styled(Link)`
   color: #fff;
   text-decoration: none;
-  font-size: 24px;
+  font-size: 22px;
   transition: all 0.5s;
   &:hover {
     color: var(--primary-color);
@@ -54,10 +60,19 @@ const CartLink = styled(Link)`
 `;
 
 const CartIcon = styled.img`
-  width: 100%;
+  width: 70%;
+`;
+
+const StyledDropdown = styled(DropdownToggle)`
+  background-color: var(--accent-color);
 `;
 
 const Header = () => {
+  const [dropdownOpen, setDropdownOpen] = useState(false);
+  const toggleDropdown = () => {
+    setDropdownOpen(!dropdownOpen);
+  };
+
   return (
     <Section>
       <Title to="/">Vodafone Art Academy</Title>
@@ -70,6 +85,15 @@ const Header = () => {
         <CartLink to="/cart">
           <CartIcon src={cart} alt="cart" />
         </CartLink>
+        <Dropdown isOpen={dropdownOpen} toggle={toggleDropdown}>
+          <StyledDropdown caret>Tal Gelfand</StyledDropdown>
+          <DropdownMenu>
+            <DropdownItem>My profile</DropdownItem>
+            <DropdownItem>Settings</DropdownItem>
+            <DropdownItem divider></DropdownItem>
+            <DropdownItem>Log out</DropdownItem>
+          </DropdownMenu>
+        </Dropdown>
       </Menu>
     </Section>
   );
