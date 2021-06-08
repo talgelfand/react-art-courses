@@ -11,6 +11,8 @@ import Teachers from "../pages/Teachers";
 import Contacts from "../pages/Contacts";
 import SingleCourse from "../pages/SingleCourse";
 import Cart from "../pages/Cart";
+import SignupPage from "../pages/SignupPage";
+import LoginPage from "../pages/LoginPage";
 
 const App = () => {
   return (
@@ -19,6 +21,8 @@ const App = () => {
         <Header />
         <Switch>
           <Route exact path="/" component={Main} />
+          <Route path="/signup" component={SignupPage} />
+          <Route path="/login" component={LoginPage} />
           <Route path="/about" component={About} />
           <Route path="/teachers" component={Teachers} />
           <Route path="/catalogue" component={Catalogue} />

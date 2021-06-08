@@ -4,22 +4,22 @@ import "./index.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import App from "./app";
 import { ContextProvider } from "./context/context";
-import firebase from "firebase";
+import firebase from "firebase/app";
+import "firebase/auth";
 
-// Your web app's Firebase configuration
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
 var firebaseConfig = {
-  apiKey: "AIzaSyCIMxh-1l2neYfYPaS9PYSs2NKBedwInJE",
-  authDomain: "art-academy-265ee.firebaseapp.com",
-  projectId: "art-academy-265ee",
-  storageBucket: "art-academy-265ee.appspot.com",
-  messagingSenderId: "888066305680",
-  appId: "1:888066305680:web:22e551bd62a9f116aef215",
-  measurementId: "G-169JQQM5FY",
+  apiKey: "AIzaSyBUHU8gQwo7PuETlvPVq88Fg3T_7KMlgZM",
+  authDomain: "art-academy-af7d3.firebaseapp.com",
+  projectId: "art-academy-af7d3",
+  storageBucket: "art-academy-af7d3.appspot.com",
+  messagingSenderId: "592992154767",
+  appId: "1:592992154767:web:f571568632b94ca4a82cfa",
 };
+
 // Initialize Firebase
-firebase.initializeApp(firebaseConfig);
-firebase.analytics();
+const app = firebase.initializeApp(firebaseConfig);
+
+export const auth = app.auth();
 
 ReactDOM.render(
   <React.StrictMode>
@@ -29,3 +29,5 @@ ReactDOM.render(
   </React.StrictMode>,
   document.getElementById("root")
 );
+
+export default app;
