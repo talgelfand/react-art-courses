@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import cart from "./cart.png";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { FaHeart } from "react-icons/fa";
 import styled from "styled-components";
 import {
@@ -9,6 +9,7 @@ import {
   DropdownMenu,
   DropdownToggle,
 } from "reactstrap";
+import { Context } from "../../context/context";
 
 const Section = styled.section`
   position: fixed;
@@ -73,6 +74,21 @@ const Header = () => {
     setDropdownOpen(!dropdownOpen);
   };
 
+  const [error, setError] = useState("");
+  const { currentUser, logout } = useContext(Context);
+  const history = useHistory();
+
+  const handleLogout = async () => {
+    setError("");
+
+    try {
+      await logout();
+      history.push("/login");
+    } catch {
+      setError("Failed to log out");
+    }
+  };
+
   return (
     <Section>
       <Title to="/">Vodafone Art Academy</Title>
@@ -91,7 +107,7 @@ const Header = () => {
             <DropdownItem>My profile</DropdownItem>
             <DropdownItem>Settings</DropdownItem>
             <DropdownItem divider></DropdownItem>
-            <DropdownItem>Log out</DropdownItem>
+            <DropdownItem onClick={handleLogout}>Log out</DropdownItem>
           </DropdownMenu>
         </Dropdown>
       </Menu>

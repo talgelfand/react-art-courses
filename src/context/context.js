@@ -17,6 +17,10 @@ const ContextProvider = ({ children }) => {
     return auth.signInWithEmailAndPassword(email, password);
   };
 
+  const logout = () => {
+    return auth.signOut();
+  };
+
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((user) => {
       setCurrentUser(user);
@@ -36,6 +40,7 @@ const ContextProvider = ({ children }) => {
         signup,
         login,
         currentUser,
+        logout,
       }}
     >
       {!loading && children}

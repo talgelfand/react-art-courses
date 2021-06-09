@@ -30,7 +30,7 @@ const App = () => {
           <Route path="/mycourses" component={MyCourses} />
           <Route path="/wishlist" component={Wishlist} />
           <Route path="/cart" component={Cart} />
-          <Route path="/course/:id" component={SingleCourse} />{" "}
+          <Route path="/course/:id" component={SingleCourse} />
           {/* id is a parameter */}
           <Route path="*" component={ErrorPage} />
         </Switch>

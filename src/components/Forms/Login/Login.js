@@ -1,5 +1,5 @@
 import React, { useRef, useState, useContext } from "react";
-import { Redirect } from "react-router";
+import { Redirect, useHistory } from "react-router";
 import { Form, FormGroup, Input, Label, Button, Alert } from "reactstrap";
 import styled from "styled-components";
 import { Context } from "../../../context/context";
@@ -26,6 +26,7 @@ const Login = () => {
   const { login } = useContext(Context);
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
+  const history = useHistory();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -34,7 +35,7 @@ const Login = () => {
       setError("");
       setLoading(true);
       await login(emailRef.current.value, passwordRef.current.value);
-      return <Redirect to="/" />;
+      history.push("/");
     } catch {
       setError("Failed to sign in");
     }
