@@ -3,7 +3,6 @@ import { Context } from "../../context/context";
 import styled from "styled-components";
 import WishlistItem from "../../components/WishlistItem";
 import { Button } from "reactstrap";
-import Header from "../../components/Header";
 
 const Section = styled.section`
   margin-top: 200px;
@@ -43,15 +42,12 @@ const Wishlist = () => {
   }
 
   return (
-    <>
-      <Header />
-      <Section>
-        {courses}
-        <StyledButton color="link" onClick={clearAllCourses}>
-          Clear all
-        </StyledButton>
-      </Section>
-    </>
+    <Section>
+      {courses}
+      <StyledButton color="link" onClick={clearAllCourses}>
+        Clear all
+      </StyledButton>
+    </Section>
   );
 };
 

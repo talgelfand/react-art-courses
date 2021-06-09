@@ -4,6 +4,7 @@ import { Link, useHistory } from "react-router-dom";
 import { FaHeart } from "react-icons/fa";
 import styled from "styled-components";
 import {
+  Button,
   Dropdown,
   DropdownItem,
   DropdownMenu,
@@ -68,6 +69,19 @@ const StyledDropdown = styled(DropdownToggle)`
   background-color: var(--accent-color);
 `;
 
+const StyledButton = styled(Button)`
+  color: #fff;
+  background-color: var(--accent-color);
+`;
+
+const SignIn = styled(Link)`
+  text-decoration: none;
+  color: #fff;
+  &:hover {
+    color: #fff;
+  }
+`;
+
 const Header = () => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const toggleDropdown = () => {
@@ -101,18 +115,22 @@ const Header = () => {
         <CartLink to="/cart">
           <CartIcon src={cart} alt="cart" />
         </CartLink>
-        <Dropdown isOpen={dropdownOpen} toggle={toggleDropdown}>
-          <StyledDropdown caret>
-            {currentUser.email ? currentUser.email : "Sign in"}
-          </StyledDropdown>
-          <DropdownMenu>
-            <DropdownItem>My profile</DropdownItem>
-            <DropdownItem>Settings</DropdownItem>
-            <DropdownItem divider></DropdownItem>
-            <DropdownItem onClick={handleLogout}>Log out</DropdownItem>
-            {error && <DropdownItem disabled>{error}</DropdownItem>}
-          </DropdownMenu>
-        </Dropdown>
+        {currentUser ? (
+          <Dropdown isOpen={dropdownOpen} toggle={toggleDropdown}>
+            <StyledDropdown caret>{currentUser.email}</StyledDropdown>
+            <DropdownMenu>
+              <DropdownItem>My profile</DropdownItem>
+              <DropdownItem>Settings</DropdownItem>
+              <DropdownItem divider></DropdownItem>
+              <DropdownItem onClick={handleLogout}>Log out</DropdownItem>
+              {error && <DropdownItem disabled>{error}</DropdownItem>}
+            </DropdownMenu>
+          </Dropdown>
+        ) : (
+          <StyledButton>
+            <SignIn to="/login">Sign in</SignIn>
+          </StyledButton>
+        )}
       </Menu>
     </Section>
   );

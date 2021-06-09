@@ -1,6 +1,5 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Card, CardTitle } from "reactstrap";
 import styled, { createGlobalStyle } from "styled-components";
 import Login from "../../components/Forms/Login";
 

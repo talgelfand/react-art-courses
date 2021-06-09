@@ -4,7 +4,6 @@ import styled from "styled-components";
 import { Button } from "reactstrap";
 import CartItem from "../../components/CartItem";
 import { remove } from "../../utils/utils";
-import Header from "../../components/Header";
 
 const Section = styled.section`
   margin-top: 200px;
@@ -84,7 +83,6 @@ const Cart = () => {
 
   return (
     <>
-      <Header />
       <Section>
         {courses}
         <StyledButton color="link" onClick={clearAllCourses}>

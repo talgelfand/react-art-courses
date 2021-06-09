@@ -19,22 +19,22 @@ const App = () => {
   return (
     <div className="App">
       <Router>
-        {/* <Header /> */}
+        <Header />
         <Switch>
           {/* <PrivateRoute path="/" component={Header} /> */}
-          <PrivateRoute exact path="/" component={Main} />
+          <Route exact path="/" component={Main} />
           <Route path="/signup" component={SignupPage} />
           <Route path="/login" component={LoginPage} />
-          <PrivateRoute path="/about" component={About} />
-          <PrivateRoute path="/teachers" component={Teachers} />
-          <PrivateRoute path="/catalogue" component={Catalogue} />
-          <PrivateRoute path="/contacts" component={Contacts} />
+          <Route path="/about" component={About} />
+          <Route path="/teachers" component={Teachers} />
+          <Route path="/catalogue" component={Catalogue} />
+          <Route path="/contacts" component={Contacts} />
           <PrivateRoute path="/mycourses" component={MyCourses} />
           <PrivateRoute path="/wishlist" component={Wishlist} />
           <PrivateRoute path="/cart" component={Cart} />
-          <PrivateRoute path="/course/:id" component={SingleCourse} />
+          <Route path="/course/:id" component={SingleCourse} />
           {/* id is a parameter */}
-          <PrivateRoute path="*" component={ErrorPage} />
+          <Route path="*" component={ErrorPage} />
         </Switch>
       </Router>
     </div>
