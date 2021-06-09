@@ -1,12 +1,7 @@
 import React from "react";
-import { Card, CardBody, CardTitle } from "reactstrap";
+import { Card, CardBody } from "reactstrap";
 import styled from "styled-components";
 import Title from "../../components/Title";
-
-const Details = styled(CardTitle)`
-  font-weight: bold;
-  text-align: center;
-`;
 
 const StyledCard = styled(Card)`
   width: 400px;
@@ -15,27 +10,29 @@ const StyledCard = styled(Card)`
   margin-top: 50px;
 `;
 
+const Span = styled.span`
+  font-weight: bold;
+`;
+
 const Contacts = () => {
   return (
     <>
       <Title text="Contact us" />
-      <h2>Here will be a contact form</h2>
       <StyledCard>
         <CardBody>
-          <Details>Contact Details</Details>
           <ul>
             <li>
-              <span>E-mail: </span>
+              <Span>E-mail: </Span>
               <a href="mailto: artacademy@gmail.com">art.academy@gmail.com</a>
             </li>
             <li>
-              <span>Phone: </span> <a href="tel:+37122345678">+371 22345678</a>
+              <Span>Phone: </Span> <a href="tel:+37122345678">+371 22345678</a>
             </li>
             <li>
-              <span>Instagram: </span> @artacademy
+              <Span>Instagram: </Span> @artacademy
             </li>
             <li>
-              <span>Facebook: </span> Art Academy
+              <Span>Facebook: </Span> Art Academy
             </li>
           </ul>
         </CardBody>
