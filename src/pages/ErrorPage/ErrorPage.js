@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
+import Header from "../../components/Header";
 
 const Section = styled.section`
   margin-top: 250px;
@@ -22,10 +23,13 @@ const StyledLink = styled(Link)`
 
 const ErrorPage = () => {
   return (
-    <Section>
-      <h1>Oops... This is the wrong address</h1>
-      <StyledLink to="/">Go back home</StyledLink>
-    </Section>
+    <>
+      <Header />
+      <Section>
+        <h1>Oops... This is the wrong address</h1>
+        <StyledLink to="/">Go back home</StyledLink>
+      </Section>
+    </>
   );
 };
 

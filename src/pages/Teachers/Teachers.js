@@ -3,6 +3,7 @@ import axios from "axios";
 import Loading from "../../components/Loading";
 import styled from "styled-components";
 import { Card, CardBody, CardImg, CardSubtitle, CardTitle } from "reactstrap";
+import Header from "../../components/Header";
 
 const Title = styled.h1`
   margin-top: 200px;
@@ -65,6 +66,7 @@ const Teachers = () => {
 
   return (
     <>
+      <Header />
       <Title>Our teachers</Title>
       <List>{teachersList}</List>
     </>

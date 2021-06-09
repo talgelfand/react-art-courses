@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import Header from "../../components/Header";
 
 const Title = styled.h1`
   margin-top: 200px;
@@ -14,6 +15,7 @@ const Description = styled.p`
 const About = () => {
   return (
     <>
+      <Header />
       <Title>About our academy</Title>
       <Description>
         <strong>The academy was found on 22nd of May, 2021.</strong>

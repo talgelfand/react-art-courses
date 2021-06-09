@@ -1,7 +1,14 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import styled from "styled-components";
+import { Card, CardTitle } from "reactstrap";
+import styled, { createGlobalStyle } from "styled-components";
 import Login from "../../components/Forms/Login";
+
+const GlobalStyle = createGlobalStyle`
+  body {
+    background-color: var(--bg-color);
+  }
+`;
 
 const Section = styled.section`
   width: 400px;
@@ -29,6 +36,7 @@ const StyledLink = styled(Link)`
 const LoginPage = () => {
   return (
     <Section>
+      <GlobalStyle />
       <Title>Log in</Title>
       <Login />
       <Subtitle>

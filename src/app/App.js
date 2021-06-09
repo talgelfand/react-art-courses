@@ -13,26 +13,28 @@ import SingleCourse from "../pages/SingleCourse";
 import Cart from "../pages/Cart";
 import SignupPage from "../pages/SignupPage";
 import LoginPage from "../pages/LoginPage";
+import PrivateRoute from "../components/PrivateRoute";
 
 const App = () => {
   return (
     <div className="App">
       <Router>
-        <Header />
+        {/* <Header /> */}
         <Switch>
-          <Route exact path="/" component={Main} />
+          {/* <PrivateRoute path="/" component={Header} /> */}
+          <PrivateRoute exact path="/" component={Main} />
           <Route path="/signup" component={SignupPage} />
           <Route path="/login" component={LoginPage} />
-          <Route path="/about" component={About} />
-          <Route path="/teachers" component={Teachers} />
-          <Route path="/catalogue" component={Catalogue} />
-          <Route path="/contacts" component={Contacts} />
-          <Route path="/mycourses" component={MyCourses} />
-          <Route path="/wishlist" component={Wishlist} />
-          <Route path="/cart" component={Cart} />
-          <Route path="/course/:id" component={SingleCourse} />
+          <PrivateRoute path="/about" component={About} />
+          <PrivateRoute path="/teachers" component={Teachers} />
+          <PrivateRoute path="/catalogue" component={Catalogue} />
+          <PrivateRoute path="/contacts" component={Contacts} />
+          <PrivateRoute path="/mycourses" component={MyCourses} />
+          <PrivateRoute path="/wishlist" component={Wishlist} />
+          <PrivateRoute path="/cart" component={Cart} />
+          <PrivateRoute path="/course/:id" component={SingleCourse} />
           {/* id is a parameter */}
-          <Route path="*" component={ErrorPage} />
+          <PrivateRoute path="*" component={ErrorPage} />
         </Switch>
       </Router>
     </div>

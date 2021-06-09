@@ -1,5 +1,5 @@
 import React, { useContext, useRef, useState } from "react";
-import { Redirect, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import { Form, FormGroup, Input, Label, Button, Alert } from "reactstrap";
 import styled from "styled-components";
 import { Context } from "../../../context/context";

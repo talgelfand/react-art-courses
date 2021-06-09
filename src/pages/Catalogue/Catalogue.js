@@ -4,6 +4,7 @@ import CatalogueItem from "../../components/CatalogueItem";
 import * as data from "../../data/data.json";
 import styled from "styled-components";
 import { search } from "../../utils/utils";
+import Header from "../../components/Header";
 
 const Search = styled(Input)`
   display: block;
@@ -29,7 +30,8 @@ const Catalogue = () => {
   );
 
   return (
-    <section className="catalogue">
+    <>
+      <Header />
       <Form
         onSubmit={(e) => {
           e.preventDefault();
@@ -49,7 +51,7 @@ const Catalogue = () => {
       ) : (
         searchedCourses
       )}
-    </section>
+    </>
   );
 };
 

@@ -102,12 +102,15 @@ const Header = () => {
           <CartIcon src={cart} alt="cart" />
         </CartLink>
         <Dropdown isOpen={dropdownOpen} toggle={toggleDropdown}>
-          <StyledDropdown caret>Tal Gelfand</StyledDropdown>
+          <StyledDropdown caret>
+            {currentUser.email ? currentUser.email : "Sign in"}
+          </StyledDropdown>
           <DropdownMenu>
             <DropdownItem>My profile</DropdownItem>
             <DropdownItem>Settings</DropdownItem>
             <DropdownItem divider></DropdownItem>
             <DropdownItem onClick={handleLogout}>Log out</DropdownItem>
+            {error && <DropdownItem disabled>{error}</DropdownItem>}
           </DropdownMenu>
         </Dropdown>
       </Menu>

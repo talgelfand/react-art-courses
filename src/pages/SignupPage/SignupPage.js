@@ -1,7 +1,13 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import styled from "styled-components";
+import styled, { createGlobalStyle } from "styled-components";
 import Signup from "../../components/Forms/Signup";
+
+const GlobalStyle = createGlobalStyle`
+  body {
+    background-color: var(--bg-color);
+  }
+`;
 
 const Section = styled.section`
   width: 400px;
@@ -29,6 +35,7 @@ const StyledLink = styled(Link)`
 const SignupPage = () => {
   return (
     <Section>
+      <GlobalStyle />
       <Title>Sign up</Title>
       <Signup />
       <Subtitle>
