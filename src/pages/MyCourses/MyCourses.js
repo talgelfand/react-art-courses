@@ -1,21 +1,24 @@
 import React from "react";
+import styled from "styled-components";
 
-import "./MyCourses.scss";
+const Section = styled.section`
+  margin-top: 200px;
+  margin-left: 50px;
+`;
+
+const Title = styled.h1`
+  text-align: center;
+  color: var(--dark-color);
+`;
 
 const MyCourses = () => {
   return (
     <>
-      <section className="myCourses">
-        <h1 className="myCourses__title">My courses</h1>
-        <ul>
-          <li>Course 1</li>
-          <li>Course 2</li>
-          <li>Course 3</li>
-          <li>Course 4</li>
-          <p>TODO tabs: completed courses and the ones in progress</p>
-          <p>TODO styles: styled components</p>
-        </ul>
-      </section>
+      <Section>
+        <Title>My courses</Title>
+        <p>TODO tabs: completed courses and the ones in progress</p>
+        <p>TODO styles: styled components</p>
+      </Section>
     </>
   );
 };
