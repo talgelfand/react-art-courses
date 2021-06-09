@@ -67,6 +67,7 @@ const CartIcon = styled.img`
 
 const StyledDropdown = styled(DropdownToggle)`
   background-color: var(--accent-color);
+  border-color: var(--accent-color);
 `;
 
 const StyledButton = styled(Button)`

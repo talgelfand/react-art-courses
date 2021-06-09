@@ -3,15 +3,10 @@ import { Context } from "../../context/context";
 import styled from "styled-components";
 import WishlistItem from "../../components/WishlistItem";
 import { Button } from "reactstrap";
+import Title from "../../components/Title";
 
 const Section = styled.section`
   margin-top: 200px;
-`;
-
-const Title = styled.h1`
-  margin-top: 200px;
-  text-align: center;
-  color: var(--dark-color);
 `;
 
 const StyledButton = styled(Button)`
@@ -38,7 +33,7 @@ const Wishlist = () => {
   });
 
   if (courses.length === 0) {
-    return <Title>No courses saved to wishlist</Title>;
+    return <Title text="No courses saved to wishlist" />;
   }
 
   return (

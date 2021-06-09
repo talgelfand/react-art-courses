@@ -1,12 +1,7 @@
 import React from "react";
 import { Card, CardBody, CardTitle } from "reactstrap";
 import styled from "styled-components";
-
-const Title = styled.h1`
-  margin-top: 200px;
-  color: var(--dark-color);
-  text-align: center;
-`;
+import Title from "../../components/Title";
 
 const Details = styled(CardTitle)`
   font-weight: bold;
@@ -23,7 +18,7 @@ const StyledCard = styled(Card)`
 const Contacts = () => {
   return (
     <>
-      <Title>Contact us</Title>
+      <Title text="Contact us" />
       <h2>Here will be a contact form</h2>
       <StyledCard>
         <CardBody>

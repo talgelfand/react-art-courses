@@ -3,12 +3,7 @@ import axios from "axios";
 import Loading from "../../components/Loading";
 import styled from "styled-components";
 import { Card, CardBody, CardImg, CardSubtitle, CardTitle } from "reactstrap";
-
-const Title = styled.h1`
-  margin-top: 200px;
-  color: var(--dark-color);
-  text-align: center;
-`;
+import Title from "../../components/Title";
 
 const List = styled.ul`
   margin-top: 40px;
@@ -65,7 +60,7 @@ const Teachers = () => {
 
   return (
     <>
-      <Title>Our teachers</Title>
+      <Title text="Our teachers" />
       <List>{teachersList}</List>
     </>
   );

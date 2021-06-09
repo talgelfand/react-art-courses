@@ -7,6 +7,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 import "./SingleCourse.scss";
+import Title from "../../components/Title";
 
 const SingleCourse = () => {
   const { id } = useParams();
@@ -40,7 +41,7 @@ const SingleCourse = () => {
 
   return (
     <section className="singleCourse">
-      <h1 className="singleCourse__title">{title}</h1>
+      <Title text={title} />
       <div className="singleCourse__content">
         <img src={image} alt={title} className="singleCourse__image" />
         <div className="singleCourse__descr">

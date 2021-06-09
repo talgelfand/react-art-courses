@@ -1,12 +1,6 @@
 @import "colors";
 
 .singleCourse {
-  &__title {
-    margin-top: 200px;
-    text-align: center;
-    color: var(--dark-color);
-  }
-
   &__content {
     display: grid;
     grid-template-columns: repeat(2, 1fr);

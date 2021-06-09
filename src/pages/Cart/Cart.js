@@ -4,17 +4,11 @@ import styled from "styled-components";
 import { Button } from "reactstrap";
 import CartItem from "../../components/CartItem";
 import { remove } from "../../utils/utils";
+import Title from "../../components/Title";
 
 const Section = styled.section`
   margin-top: 200px;
 `;
-
-const Title = styled.h1`
-  margin-top: 200px;
-  text-align: center;
-  color: var(--dark-color);
-`;
-
 const StyledButton = styled(Button)`
   display: block;
   margin: 0 auto;
@@ -78,7 +72,7 @@ const Cart = () => {
   });
 
   if (courses.length === 0) {
-    return <Title>No courses added to cart</Title>;
+    return <Title text="No courses added to cart" />;
   }
 
   return (

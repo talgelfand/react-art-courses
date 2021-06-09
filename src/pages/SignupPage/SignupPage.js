@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import styled, { createGlobalStyle } from "styled-components";
 import Signup from "../../components/Forms/Signup";
+import Title from "../../components/Title";
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -14,11 +15,6 @@ const Section = styled.section`
   display: block;
   margin: 0 auto;
   margin-top: 200px;
-`;
-
-const Title = styled.h1`
-  text-align: center;
-  color: var(--dark-color);
 `;
 
 const Subtitle = styled.p`
@@ -36,7 +32,7 @@ const SignupPage = () => {
   return (
     <Section>
       <GlobalStyle />
-      <Title>Sign up</Title>
+      <Title text="Sign up" />
       <Signup />
       <Subtitle>
         Already have an account? <StyledLink to="login">Log in</StyledLink>

@@ -4,18 +4,13 @@ import CatalogueItem from "../../components/CatalogueItem";
 import * as data from "../../data/data.json";
 import styled from "styled-components";
 import { search } from "../../utils/utils";
+import Title from "../../components/Title";
 
 const Search = styled(Input)`
   display: block;
   margin: 0 auto;
   margin-top: 200px;
   max-width: 400px;
-`;
-
-const Title = styled.h1`
-  margin-top: 100px;
-  text-align: center;
-  color: var(--dark-color);
 `;
 
 const Catalogue = () => {
@@ -45,7 +40,7 @@ const Catalogue = () => {
         />
       </Form>
       {searchedCourses.length === 0 ? (
-        <Title>No courses were found</Title>
+        <Title text="No courses were found" />
       ) : (
         searchedCourses
       )}

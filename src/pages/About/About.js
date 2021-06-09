@@ -1,11 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-
-const Title = styled.h1`
-  margin-top: 200px;
-  color: var(--dark-color);
-  text-align: center;
-`;
+import Title from "../../components/Title";
 
 const Description = styled.p`
   padding: 50px 150px 0 150px;
@@ -14,7 +9,7 @@ const Description = styled.p`
 const About = () => {
   return (
     <>
-      <Title>About our academy</Title>
+      <Title text="About our academy" />
       <Description>
         <strong>The academy was found on 22nd of May, 2021.</strong>
         <br /> <br /> Lorem ipsum, dolor sit amet consectetur adipisicing elit.
