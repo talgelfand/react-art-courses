@@ -73,6 +73,7 @@ const StyledDropdown = styled(DropdownToggle)`
 const StyledButton = styled(Button)`
   color: #fff;
   background-color: var(--accent-color);
+  border-color: var(--accent-color);
 `;
 
 const SignIn = styled(Link)`

@@ -1,5 +1,4 @@
 import React, { useRef, useState, useContext } from "react";
-import { useHistory } from "react-router";
 import { Link } from "react-router-dom";
 import {
   Form,
@@ -34,34 +33,24 @@ const StyledButton = styled(Button)`
   border: var(--accent-color);
 `;
 
-const StyledLink = styled(Link)`
-  display: block;
-  margin-top: 20px;
-  font-size: 15px;
-  color: var(--dark-color);
-  &:hover {
-    color: var(--accent-color);
-  }
-`;
-
-const Login = () => {
+const PasswordReset = () => {
   const emailRef = useRef();
-  const passwordRef = useRef();
-  const { login } = useContext(Context);
+  const { resetPassword } = useContext(Context);
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
-  const history = useHistory();
+  const [message, setMessage] = useState("");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     try {
+      setMessage("");
       setError("");
       setLoading(true);
-      await login(emailRef.current.value, passwordRef.current.value);
-      history.push("/");
+      await resetPassword(emailRef.current.value);
+      setMessage("Check your inbox for further instructions");
     } catch {
-      setError("Failed to sign in");
+      setError("Failed to reset password");
     }
     setLoading(false);
   };
@@ -69,19 +58,15 @@ const Login = () => {
   return (
     <StyledCard>
       <CardBody>
+        {error && <Alert color="danger">{error}</Alert>}
+        {message && <Alert color="success">{message}</Alert>}
         <Form onSubmit={handleSubmit}>
-          {error && <Alert color="danger">{error}</Alert>}
           <FormGroup>
             <StyledLabel for="email">Email:</StyledLabel>
             <StyledInput innerRef={emailRef} type="email" id="email" />
           </FormGroup>
-          <FormGroup>
-            <StyledLabel for="password">Password:</StyledLabel>
-            <StyledInput innerRef={passwordRef} type="password" id="password" />
-          </FormGroup>
-          <StyledLink to="/reset-password">Forgot password?</StyledLink>
           <StyledButton disabled={loading} type="submit">
-            Log in
+            Reset
           </StyledButton>
         </Form>
       </CardBody>
@@ -89,4 +74,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default PasswordReset;

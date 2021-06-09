@@ -21,6 +21,10 @@ const ContextProvider = ({ children }) => {
     return auth.signOut();
   };
 
+  const resetPassword = (email) => {
+    return auth.sendPasswordResetEmail(email);
+  };
+
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((user) => {
       setCurrentUser(user);
@@ -41,6 +45,7 @@ const ContextProvider = ({ children }) => {
         login,
         currentUser,
         logout,
+        resetPassword,
       }}
     >
       {!loading && children}

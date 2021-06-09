@@ -14,6 +14,7 @@ import Cart from "../pages/Cart";
 import SignupPage from "../pages/SignupPage";
 import LoginPage from "../pages/LoginPage";
 import PrivateRoute from "../components/PrivateRoute";
+import PasswordResetPage from "../pages/PasswordResetPage";
 
 const App = () => {
   return (
@@ -25,6 +26,7 @@ const App = () => {
           <Route exact path="/" component={Main} />
           <Route path="/signup" component={SignupPage} />
           <Route path="/login" component={LoginPage} />
+          <Route path="/reset-password" component={PasswordResetPage} />
           <Route path="/about" component={About} />
           <Route path="/teachers" component={Teachers} />
           <Route path="/catalogue" component={Catalogue} />
