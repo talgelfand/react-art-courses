@@ -1,8 +1,21 @@
 import React, { useContext, useRef, useState } from "react";
 import { useHistory } from "react-router-dom";
-import { Form, FormGroup, Input, Label, Button, Alert } from "reactstrap";
+import {
+  Form,
+  FormGroup,
+  Input,
+  Label,
+  Button,
+  Alert,
+  Card,
+  CardBody,
+} from "reactstrap";
 import styled from "styled-components";
 import { Context } from "../../../context/context";
+
+const StyledCard = styled(Card)`
+  margin-top: 30px;
+`;
 
 const StyledLabel = styled(Label)`
   margin-top: 20px;
@@ -48,34 +61,40 @@ const Signup = () => {
   };
 
   return (
-    <Form onSubmit={handleSubmit}>
-      {error && <Alert color="danger">{error}</Alert>}
-      <FormGroup>
-        <StyledLabel for="email">Email:</StyledLabel>
-        <StyledInput innerRef={emailRef} type="email" id="email" required />
-      </FormGroup>
-      <FormGroup>
-        <StyledLabel for="password">Password:</StyledLabel>
-        <StyledInput
-          innerRef={passwordRef}
-          type="password"
-          id="password"
-          required
-        />
-      </FormGroup>
-      <FormGroup>
-        <StyledLabel for="password-confirm">Password confirmation:</StyledLabel>
-        <StyledInput
-          innerRef={passwordConfirmRef}
-          type="password"
-          id="password-confirm"
-          required
-        />
-      </FormGroup>
-      <StyledButton disabled={loading} type="submit">
-        Sign up
-      </StyledButton>
-    </Form>
+    <StyledCard>
+      <CardBody>
+        <Form onSubmit={handleSubmit}>
+          {error && <Alert color="danger">{error}</Alert>}
+          <FormGroup>
+            <StyledLabel for="email">Email:</StyledLabel>
+            <StyledInput innerRef={emailRef} type="email" id="email" required />
+          </FormGroup>
+          <FormGroup>
+            <StyledLabel for="password">Password:</StyledLabel>
+            <StyledInput
+              innerRef={passwordRef}
+              type="password"
+              id="password"
+              required
+            />
+          </FormGroup>
+          <FormGroup>
+            <StyledLabel for="password-confirm">
+              Password confirmation:
+            </StyledLabel>
+            <StyledInput
+              innerRef={passwordConfirmRef}
+              type="password"
+              id="password-confirm"
+              required
+            />
+          </FormGroup>
+          <StyledButton disabled={loading} type="submit">
+            Sign up
+          </StyledButton>
+        </Form>
+      </CardBody>
+    </StyledCard>
   );
 };
 

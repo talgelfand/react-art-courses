@@ -26,6 +26,11 @@ const Subtitle = styled.p`
 
 const StyledLink = styled(Link)`
   margin-top: 10px;
+  color: var(--dark-color);
+  font-weight: bold;
+  &:hover {
+    color: var(--accent-color);
+  }
 `;
 
 const LoginPage = () => {

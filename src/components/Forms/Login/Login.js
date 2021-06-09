@@ -1,8 +1,22 @@
 import React, { useRef, useState, useContext } from "react";
 import { useHistory } from "react-router";
-import { Form, FormGroup, Input, Label, Button, Alert } from "reactstrap";
+import { Link } from "react-router-dom";
+import {
+  Form,
+  FormGroup,
+  Input,
+  Label,
+  Button,
+  Alert,
+  Card,
+  CardBody,
+} from "reactstrap";
 import styled from "styled-components";
 import { Context } from "../../../context/context";
+
+const StyledCard = styled(Card)`
+  margin-top: 30px;
+`;
 
 const StyledLabel = styled(Label)`
   margin-top: 20px;
@@ -18,6 +32,16 @@ const StyledButton = styled(Button)`
   margin-top: 30px;
   background-color: var(--accent-color);
   border: var(--accent-color);
+`;
+
+const StyledLink = styled(Link)`
+  display: block;
+  margin-top: 20px;
+  font-size: 15px;
+  color: var(--dark-color);
+  &:hover {
+    color: var(--accent-color);
+  }
 `;
 
 const Login = () => {
@@ -43,20 +67,25 @@ const Login = () => {
   };
 
   return (
-    <Form onSubmit={handleSubmit}>
-      {error && <Alert color="danger">{error}</Alert>}
-      <FormGroup>
-        <StyledLabel for="email">Email:</StyledLabel>
-        <StyledInput innerRef={emailRef} type="email" id="email" />
-      </FormGroup>
-      <FormGroup>
-        <StyledLabel for="password">Password:</StyledLabel>
-        <StyledInput innerRef={passwordRef} type="password" id="password" />
-      </FormGroup>
-      <StyledButton disabled={loading} type="submit">
-        Log in
-      </StyledButton>
-    </Form>
+    <StyledCard>
+      <CardBody>
+        <Form onSubmit={handleSubmit}>
+          {error && <Alert color="danger">{error}</Alert>}
+          <FormGroup>
+            <StyledLabel for="email">Email:</StyledLabel>
+            <StyledInput innerRef={emailRef} type="email" id="email" />
+          </FormGroup>
+          <FormGroup>
+            <StyledLabel for="password">Password:</StyledLabel>
+            <StyledInput innerRef={passwordRef} type="password" id="password" />
+          </FormGroup>
+          <StyledLink>Forgot password?</StyledLink>
+          <StyledButton disabled={loading} type="submit">
+            Log in
+          </StyledButton>
+        </Form>
+      </CardBody>
+    </StyledCard>
   );
 };
 
