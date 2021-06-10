@@ -8,6 +8,9 @@ const ContextProvider = ({ children }) => {
   const [wishlistItems, setWishlistItems] = useState([]);
   const [currentUser, setCurrentUser] = useState();
   const [loading, setLoading] = useState(true);
+  const [phone, setPhone] = useState("");
+  const [name, setName] = useState("");
+  const [artist, setArtist] = useState("");
 
   const signup = (email, password) => {
     return auth.createUserWithEmailAndPassword(email, password);
@@ -46,6 +49,12 @@ const ContextProvider = ({ children }) => {
         currentUser,
         logout,
         resetPassword,
+        phone,
+        name,
+        artist,
+        setPhone,
+        setName,
+        setArtist,
       }}
     >
       {!loading && children}

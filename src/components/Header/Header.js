@@ -121,7 +121,9 @@ const Header = () => {
           <Dropdown isOpen={dropdownOpen} toggle={toggleDropdown}>
             <StyledDropdown caret>{currentUser.email}</StyledDropdown>
             <DropdownMenu>
-              <DropdownItem>My profile</DropdownItem>
+              <DropdownItem>
+                <Link to="/profile">My profile</Link>
+              </DropdownItem>
               <DropdownItem>Settings</DropdownItem>
               <DropdownItem divider></DropdownItem>
               <DropdownItem onClick={handleLogout}>Log out</DropdownItem>
