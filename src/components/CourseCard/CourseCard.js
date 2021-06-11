@@ -1,11 +1,55 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
-import { FaHeart, FaCartPlus } from "react-icons/fa";
-import { useSpring, config, animated } from "react-spring";
+import React, { useState } from "react"
+import { FaHeart, FaCartPlus } from "react-icons/fa"
+import { useSpring, config, animated } from "react-spring"
+import styled from "styled-components"
+import CardLink from "../CardLink/CardLink"
 
-// import styled from "styled-components";
+const Section = styled.section`
+  position: relative;
+  padding: 30px;
+  padding-bottom: 0;
+  width: 300px;
+  height: 300px;
+  background-color: var(--bg-color);
+  box-shadow: 0 0 5px var(--dark-color);
+  transition: all 1s;
+`
 
-import "./CourseCard.scss";
+const Image = styled.img`
+  width: 300px;
+  height: 300px;
+  object-fit: cover;
+  filter: grayscale(50%);
+`
+
+const Subtitle = styled.h2`
+  font-size: 18px;
+  margin-top: 10px;
+`
+
+const Span = styled.span`
+  font-weight: bold;
+`
+const Wrapper = styled.div`
+  position: absolute;
+  transform: translateX(-50%);
+  left: 50%;
+  bottom: 65px;
+  display: flex;
+  justify-content: center;
+`
+
+const Icon = styled.div`
+  margin: 0 30px;
+  transform: scale(1.2);
+  cursor: pointer;
+  transition: all 0.3s;
+  color: var(--dark-color);
+  &:hover {
+    transform: scale(1.5);
+    color: var(--accent-color);
+  }
+`
 
 const CourseCard = ({
   id,
@@ -16,23 +60,23 @@ const CourseCard = ({
   addToWishlist,
   addToCart,
 }) => {
-  const [isHovered, setIsHovered] = useState(false);
+  const [isHovered, setIsHovered] = useState(true)
 
   const handleHover = () => {
-    setIsHovered(!isHovered);
-  };
+    setIsHovered(!isHovered)
+  }
 
   const handleHoverLeave = () => {
-    setIsHovered(!isHovered);
-  };
+    setIsHovered(!isHovered)
+  }
 
   const handleAddingToWishlist = () => {
-    addToWishlist();
-  };
+    addToWishlist()
+  }
 
   const handleAddingToCart = () => {
-    addToCart();
-  };
+    addToCart()
+  }
 
   const fadeStyles = useSpring({
     config: { ...config.stiff, friction: 18 },
@@ -40,49 +84,43 @@ const CourseCard = ({
     to: {
       opacity: !isHovered ? 1 : 0,
     },
-  });
+  })
 
   if (!isHovered) {
     return (
       <animated.div style={fadeStyles}>
-        <img
+        <Image
           src={image}
           alt={title}
           className="courseCard__image"
           onMouseEnter={handleHover}
         />
       </animated.div>
-    );
+    )
   }
 
   return (
-    <section className="courseCard" onMouseLeave={handleHoverLeave}>
-      <div className={"courseCard__content"}>
-        <h1 className="courseCard__title">
-          <span>Title:</span> {title}
-        </h1>
-        <h2 className="courseCard__duration">
-          <span>Duration:</span> {duration}
-        </h2>
-        <h2 className="courseCard__price">
-          <span>Price:</span> {price}
-        </h2>
-        <div className="courseCard__icons">
-          <FaHeart
-            className="courseCard__icons-item"
-            onClick={handleAddingToWishlist}
-          />
-          <FaCartPlus
-            className="courseCard__icons-item"
-            onClick={handleAddingToCart}
-          />
-        </div>
-        <Link to={`course/${id}`} className="courseCard__link">
-          View more
-        </Link>
-      </div>
-    </section>
-  );
-};
+    <Section onMouseLeave={handleHoverLeave}>
+      <Subtitle>
+        <Span>Title:</Span> {title}
+      </Subtitle>
+      <Subtitle>
+        <Span>Duration:</Span> {duration}
+      </Subtitle>
+      <Subtitle>
+        <Span>Price:</Span> {price}
+      </Subtitle>
+      <Wrapper>
+        <Icon>
+          <FaHeart onClick={handleAddingToWishlist} />
+        </Icon>
+        <Icon>
+          <FaCartPlus onClick={handleAddingToCart} />
+        </Icon>
+      </Wrapper>
+      <CardLink path={`course/${id}`} text="View more" bold />
+    </Section>
+  )
+}
 
-export default CourseCard;
+export default CourseCard

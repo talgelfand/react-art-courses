@@ -1,4 +1,4 @@
-import React from "react";
+import React from "react"
 import {
   Card,
   CardTitle,
@@ -6,10 +6,10 @@ import {
   CardBody,
   CardText,
   CardImg,
-  Button,
-} from "reactstrap";
-import { Link } from "react-router-dom";
-import styled from "styled-components";
+} from "reactstrap"
+import styled from "styled-components"
+import SecondaryButton from "../buttons/SecondaryButton"
+import PrimaryLink from "../PrimaryLink"
 
 const StyledCard = styled(Card)`
   width: 650px;
@@ -17,27 +17,22 @@ const StyledCard = styled(Card)`
   flex-direction: row;
   margin: 0 auto;
   margin-top: 30px;
-`;
+`
 
 const Title = styled(CardTitle)`
   font-weight: bold;
-`;
+`
 
 const Image = styled(CardImg)`
   width: 200px;
   object-fit: cover;
   filter: grayscale(30%);
-`;
-
-const StyledButton = styled(Button)`
-  display: block;
-  margin-top: 20px;
-`;
+`
 
 const WishlistItem = ({ id, title, image, duration, price, removeItem }) => {
   const handleRemoving = (id) => {
-    removeItem(id);
-  };
+    removeItem(id)
+  }
 
   return (
     <StyledCard key={id}>
@@ -45,12 +40,12 @@ const WishlistItem = ({ id, title, image, duration, price, removeItem }) => {
         <Title>{title}</Title>
         <CardSubtitle>{duration}</CardSubtitle>
         <CardText>{price}</CardText>
-        <Link to={`/course/${id}`}>View more</Link>
-        <StyledButton onClick={() => handleRemoving(id)}>Remove</StyledButton>
+        <PrimaryLink path={`/course/${id}`} text="View more" />
+        <SecondaryButton text="Remove" onClick={() => handleRemoving(id)} />
       </CardBody>
       <Image src={image} alt={title} />
     </StyledCard>
-  );
-};
+  )
+}
 
-export default WishlistItem;
+export default WishlistItem

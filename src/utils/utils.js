@@ -1,28 +1,17 @@
-import { toast } from "react-toastify";
-
-// const { cartItems, wishlistItems } = useContext(Context);
-
-// const addToCart = (course) => {
-//   if (!cartItems.includes(course)) {
-//     toast.info("Added to cart");
-//     cartItems.push(course);
-//   } else {
-//     toast.error("This course is already in the cart");
-//   }
-// };
+import { toast } from "react-toastify"
 
 const add = (list, course) => {
   if (!list.includes(course)) {
-    toast("Added");
-    list.push(course);
+    toast(`Added to ${course.list === "wishlist" ? "wishlist" : "cart"}`)
+    list.push(course)
   } else {
-    toast.error("This course is already added");
+    toast.error("This course is already added")
   }
-};
+}
 
 const remove = (list, id) => {
-  list.filter((course) => course.id !== id);
-};
+  list.filter((course) => course.id !== id)
+}
 
 const search = (courses, initialSearch, searchParam) => {
   return courses.filter((course) => {
@@ -32,9 +21,9 @@ const search = (courses, initialSearch, searchParam) => {
           .toString()
           .toLowerCase()
           .indexOf(initialSearch.toLowerCase()) > -1
-      );
-    });
-  });
-};
+      )
+    })
+  })
+}
 
-export { add, remove, search };
+export { add, remove, search }

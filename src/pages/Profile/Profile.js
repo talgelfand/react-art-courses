@@ -1,5 +1,4 @@
-import React, { useContext, useState } from "react";
-import { Card, CardBody, Form, Input, CardTitle, Label } from "reactstrap";
+import React from "react";
 import styled from "styled-components";
 import EditProfile from "../../components/Forms/EditProfile";
 import ProfileInfo from "../../components/ProfileInfo";

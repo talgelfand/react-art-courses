@@ -1,39 +1,34 @@
-import React, { useContext } from "react";
-import { Context } from "../../context/context";
-import styled from "styled-components";
-import { Button } from "reactstrap";
-import CartItem from "../../components/CartItem";
-import { remove } from "../../utils/utils";
-import Title from "../../components/Title";
+import React, { useContext } from "react"
+import { Context } from "../../context/context"
+import styled from "styled-components"
+import { Button } from "reactstrap"
+import CartItem from "../../components/CartItem"
+import { remove } from "../../utils/utils"
+import Title from "../../components/Title"
+import PrimaryButton from "../../components/buttons/PrimaryButton"
 
 const Section = styled.section`
   margin-top: 200px;
-`;
+`
 const StyledButton = styled(Button)`
   display: block;
   margin: 0 auto;
   margin-top: 20px;
   font-size: 22px;
-`;
+  color: var(--dark-color);
+  &:hover {
+    color: var(--accent-color);
+  }
+`
 
 const TotalItems = styled.h3`
   font-size: 18px;
-`;
+`
 
 const TotalPrice = styled.h2`
   margin-top: 20px;
   font-size: 20px;
-`;
-
-const Checkout = styled(Button)`
-  display: block;
-  background-color: var(--accent-color);
-  border-color: var(--accent-color);
-  &:hover {
-    background-color: var(--primary-color);
-    border-color: var(--primary-color);
-  }
-`;
+`
 
 const Wrapper = styled.div`
   display: flex;
@@ -42,37 +37,37 @@ const Wrapper = styled.div`
   margin-top: 40px;
   justify-content: space-between;
   align-items: center;
-`;
+`
 
 const Cart = () => {
-  const { cartItems, setCartItems } = useContext(Context);
-  let totalPrice = 0;
-  const amountOfCourses = cartItems.length;
+  const { cartItems, setCartItems } = useContext(Context)
+  let totalPrice = 0
+  const amountOfCourses = cartItems.length
 
   const clearAllCourses = () => {
-    setCartItems([]);
-  };
+    setCartItems([])
+  }
 
   const countTotalPrice = () => {
     cartItems.forEach((item) => {
-      totalPrice += item.priceNum;
-    });
+      totalPrice += item.priceNum
+    })
 
-    return totalPrice;
-  };
+    return totalPrice
+  }
 
   const courses = cartItems.map((item) => {
     const removeItem = (id) => {
-      const newItems = cartItems.filter((item) => item.id !== id);
-      // const newItems = remove(cartItems, id);
-      setCartItems(newItems);
-    };
+      // const newItems = cartItems.filter((item) => item.id !== id);
+      const newItems = remove(cartItems, id)
+      setCartItems(newItems)
+    }
 
-    return <CartItem key={item.id} {...item} removeItem={removeItem} />;
-  });
+    return <CartItem key={item.id} {...item} removeItem={removeItem} />
+  })
 
   if (courses.length === 0) {
-    return <Title text="No courses added to cart" />;
+    return <Title text="No courses added to cart" />
   }
 
   return (
@@ -87,11 +82,11 @@ const Cart = () => {
             <TotalItems>{`${amountOfCourses} course(s)`}</TotalItems>
             <TotalPrice>{`Total: ${countTotalPrice()} euros`}</TotalPrice>
           </div>
-          <Checkout>Go to checkout</Checkout>
+          <PrimaryButton text="Go to checkout" />
         </Wrapper>
       </Section>
     </>
-  );
-};
+  )
+}
 
-export default Cart;
+export default Cart

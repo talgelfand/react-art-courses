@@ -1,7 +1,7 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import styled, { createGlobalStyle } from "styled-components";
 import Signup from "../../components/Forms/Signup";
+import PrimaryLink from "../../components/PrimaryLink";
 import Title from "../../components/Title";
 
 const GlobalStyle = createGlobalStyle`
@@ -24,15 +24,6 @@ const Subtitle = styled.p`
   margin-top: 40px;
 `;
 
-const StyledLink = styled(Link)`
-  margin-top: 10px;
-  color: var(--dark-color);
-  font-weight: bold;
-  &:hover {
-    color: var(--accent-color);
-  }
-`;
-
 const SignupPage = () => {
   return (
     <Section>
@@ -40,7 +31,7 @@ const SignupPage = () => {
       <Title text="Sign up" />
       <Signup />
       <Subtitle>
-        Already have an account? <StyledLink to="login">Log in</StyledLink>
+        <PrimaryLink path="login" text="Log in" bold />
       </Subtitle>
     </Section>
   );

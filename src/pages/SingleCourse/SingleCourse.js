@@ -1,63 +1,89 @@
-import React, { useContext } from "react";
-import { Redirect, useParams } from "react-router-dom";
-import * as data from "../../data/data.json";
-import { Button } from "reactstrap";
-import { Context } from "../../context/context";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import React, { useContext } from "react"
+import { Redirect, useParams } from "react-router-dom"
+import * as data from "../../data/data.json"
+import { Context } from "../../context/context"
+import { ToastContainer } from "react-toastify"
+import "react-toastify/dist/ReactToastify.css"
+import Title from "../../components/Title"
+import PrimaryButton from "../../components/buttons/PrimaryButton"
+import { add } from "../../utils/utils"
+import styled from "styled-components"
 
-import "./SingleCourse.scss";
-import Title from "../../components/Title";
+const Content = styled.div`
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 50px;
+  width: 1000px;
+  margin: 0 auto;
+  margin-top: 50px;
+  justify-content: space-between;
+  align-items: stretch;
+`
+
+const Image = styled.img`
+  width: 400px;
+  object-fit: cover;
+`
+
+const Span = styled.span`
+  font-weight: bold;
+`
+
+const Subtitle = styled.h2`
+  font-weight: normal;
+  font-size: 20px;
+`
+const Text = styled.p`
+  margin-top: 20px;
+`
+
+const Wrapper = styled.div`
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-between;
+`
 
 const SingleCourse = () => {
-  const { id } = useParams();
-  const course = data.courses.find((item) => item.id === parseInt(id));
+  const { id } = useParams()
+  const course = data.courses.find((item) => item.id === parseInt(id))
 
-  const { cartItems, wishlistItems } = useContext(Context);
+  const { cartItems, wishlistItems } = useContext(Context)
 
   if (!course) {
-    return <Redirect to="/error" />;
+    return <Redirect to="/error" />
   }
 
   const addToCart = () => {
-    if (!cartItems.includes(course)) {
-      toast.info("Added to cart");
-      cartItems.push(course);
-    } else {
-      toast.error("This course is already in the cart");
-    }
-  };
+    course.list = "cart"
+    add(cartItems, course, "cart")
+  }
 
   const addToWishlist = () => {
-    if (!wishlistItems.includes(course)) {
-      toast("Added to wishlist");
-      wishlistItems.push(course);
-    } else {
-      toast.error("This course is already in the wishlist");
-    }
-  };
+    course.list = "wishlist"
+    add(wishlistItems, course)
+  }
 
-  const { title, image, duration, requirements, price } = course;
+  const { title, image, duration, requirements, price } = course
 
   return (
-    <section className="singleCourse">
+    <>
       <Title text={title} />
-      <div className="singleCourse__content">
-        <img src={image} alt={title} className="singleCourse__image" />
-        <div className="singleCourse__descr">
-          <h2 className="singleCourse__duration">
-            <span>Duration: </span>
+      <Content>
+        <Image src={image} alt={title} />
+        <div>
+          <Subtitle>
+            <Span>Duration: </Span>
             {duration}
-          </h2>
-          <h2 className="singleCourse__requirements">
-            <span>Requirements: </span>
+          </Subtitle>
+          <Subtitle>
+            <Span>Requirements: </Span>
             {requirements || "none"}
-          </h2>
-          <h2 className="singleCourse__price">
-            <span>Price: </span>
+          </Subtitle>
+          <Subtitle>
+            <Span>Price: </Span>
             {price}
-          </h2>
-          <p className="singleCourse__text">
+          </Subtitle>
+          <Text>
             But I must explain to you how all this mistaken idea of denouncing
             pleasure and praising pain was born and I will give you a complete
             account of the system, and expound the actual teachings of the great
@@ -73,23 +99,16 @@ const SingleCourse = () => {
             advantage from it? But who has any right to find fault with a man
             who chooses to enjoy a pleasure that has no annoying consequences,
             or one who avoids a pain that produces no resultant pleasure?
-          </p>
-          <div className="singleCourse__buttons">
-            <Button className="singleCourse__buttons-btn" onClick={addToCart}>
-              Add to cart
-            </Button>
-            <Button
-              className="singleCourse__buttons-btn"
-              onClick={addToWishlist}
-            >
-              Add to wishlist
-            </Button>
-          </div>
+          </Text>
+          <Wrapper>
+            <PrimaryButton text="Add to cart" clickEvent={addToCart} />
+            <PrimaryButton text="Add to wishlist" clickEvent={addToWishlist} />
+          </Wrapper>
         </div>
-      </div>
+      </Content>
       <ToastContainer />
-    </section>
-  );
-};
+    </>
+  )
+}
 
-export default SingleCourse;
+export default SingleCourse

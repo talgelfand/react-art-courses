@@ -1,14 +1,14 @@
 import React from "react";
 import styled from "styled-components";
 
-const Title = ({ text }) => {
-  const Title = styled.h1`
-    margin-top: 200px;
-    color: var(--dark-color);
-    text-align: center;
-  `;
+const StyledTitle = styled.h1`
+  margin-top: 200px;
+  color: var(--dark-color);
+  text-align: center;
+`;
 
-  return <Title>{text}</Title>;
+const Title = ({ text }) => {
+  return <StyledTitle>{text}</StyledTitle>;
 };
 
 export default Title;

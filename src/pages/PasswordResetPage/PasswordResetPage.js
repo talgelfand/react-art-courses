@@ -1,7 +1,7 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import styled, { createGlobalStyle } from "styled-components";
 import PasswordReset from "../../components/Forms/PasswordReset";
+import PrimaryLink from "../../components/PrimaryLink";
 import Title from "../../components/Title";
 
 const GlobalStyle = createGlobalStyle`
@@ -24,16 +24,6 @@ const Subtitle = styled.p`
   margin-top: 40px;
 `;
 
-const StyledLink = styled(Link)`
-  margin-top: 10px;
-  color: var(--dark-color);
-  font-weight: bold;
-  font-size: 20px;
-  &:hover {
-    color: var(--accent-color);
-  }
-`;
-
 const PasswordResetPage = () => {
   return (
     <Section>
@@ -41,7 +31,7 @@ const PasswordResetPage = () => {
       <Title text="Reset password" />
       <PasswordReset />
       <Subtitle>
-        <StyledLink to="/login">Log in</StyledLink>
+        <PrimaryLink path="/login" text="Log in" bold />
       </Subtitle>
     </Section>
   );

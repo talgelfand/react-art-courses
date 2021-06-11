@@ -1,11 +1,11 @@
-import React, { useContext } from "react";
-import CourseCard from "../CourseCard/CourseCard";
-import * as data from "../../data/data.json";
-import styled from "styled-components";
-import { Context } from "../../context/context";
-import { ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
-import { add } from "../../utils/utils";
+import React, { useContext } from "react"
+import CourseCard from "../CourseCard/CourseCard"
+import * as data from "../../data/data.json"
+import styled from "styled-components"
+import { Context } from "../../context/context"
+import { ToastContainer } from "react-toastify"
+import "react-toastify/dist/ReactToastify.css"
+import { add } from "../../utils/utils"
 
 const Section = styled.section`
   position: relative;
@@ -15,19 +15,21 @@ const Section = styled.section`
   grid-template-columns: repeat(4, 300px);
   justify-content: center;
   gap: 10px;
-`;
+`
 
 const CoursesGrid = () => {
-  const { cartItems, wishlistItems } = useContext(Context);
+  const { cartItems, wishlistItems } = useContext(Context)
 
   const courses = data.courses.map((course) => {
     const addToCart = () => {
-      add(cartItems, course);
-    };
+      course.list = "cart"
+      add(cartItems, course, "cart")
+    }
 
     const addToWishlist = () => {
-      add(wishlistItems, course);
-    };
+      course.list = "wishlist"
+      add(wishlistItems, course)
+    }
 
     return (
       <CourseCard
@@ -36,15 +38,15 @@ const CoursesGrid = () => {
         addToCart={addToCart}
         addToWishlist={addToWishlist}
       />
-    );
-  });
+    )
+  })
 
   return (
     <Section>
       {courses}
       <ToastContainer />
     </Section>
-  );
-};
+  )
+}
 
-export default CoursesGrid;
+export default CoursesGrid

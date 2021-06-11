@@ -1,64 +1,58 @@
-import React, { useContext, useRef, useState } from "react";
-import { useHistory } from "react-router-dom";
+import React, { useContext, useRef, useState } from "react"
+import { useHistory } from "react-router-dom"
+import { toast, ToastContainer } from "react-toastify"
 import {
   Form,
   FormGroup,
   Input,
   Label,
-  Button,
   Alert,
   Card,
   CardBody,
-} from "reactstrap";
-import styled from "styled-components";
-import { Context } from "../../../context/context";
+} from "reactstrap"
+import styled from "styled-components"
+import { Context } from "../../../context/context"
+import PrimaryButton from "../../buttons/PrimaryButton"
 
 const StyledCard = styled(Card)`
   margin-top: 30px;
-`;
+`
 
 const StyledLabel = styled(Label)`
   margin-top: 20px;
-`;
+`
 
 const StyledInput = styled(Input)`
   margin-top: 10px;
-`;
-
-const StyledButton = styled(Button)`
-  display: block;
-  margin: 0 auto;
-  margin-top: 30px;
-  background-color: var(--accent-color);
-  border: var(--accent-color);
-`;
+`
 
 const Signup = () => {
-  const emailRef = useRef();
-  const passwordRef = useRef();
-  const passwordConfirmRef = useRef();
-  const { signup } = useContext(Context);
-  const [error, setError] = useState("");
-  const [loading, setLoading] = useState(false);
-  const history = useHistory();
+  const emailRef = useRef()
+  const passwordRef = useRef()
+  const passwordConfirmRef = useRef()
+  const { signup } = useContext(Context)
+  const [error, setError] = useState("")
+  const [loading, setLoading] = useState(false)
+  const history = useHistory()
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
+    e.preventDefault()
 
     if (passwordRef.current.value !== passwordConfirmRef.current.value) {
-      return setError("Passwords do not match");
+      return setError("Passwords do not match")
     }
 
     try {
-      setError("");
-      setLoading(true);
-      await signup(emailRef.current.value, passwordRef.current.value);
-      history.push("/login");
+      setError("")
+      setLoading(true)
+      await signup(emailRef.current.value, passwordRef.current.value)
+      history.push("/")
+      toast.success("Account created")
     } catch {
-      setError("Failed to create an account");
+      setError("Failed to create an account")
     }
-    setLoading(false);
-  };
+    setLoading(false)
+  }
 
   return (
     <StyledCard>
@@ -89,13 +83,18 @@ const Signup = () => {
               required
             />
           </FormGroup>
-          <StyledButton disabled={loading} type="submit">
-            Sign up
-          </StyledButton>
+          <PrimaryButton
+            text="Sign up"
+            disabled={loading}
+            type="submit"
+            centered
+            marginTop
+          />
         </Form>
       </CardBody>
+      <ToastContainer />
     </StyledCard>
-  );
-};
+  )
+}
 
-export default Signup;
+export default Signup

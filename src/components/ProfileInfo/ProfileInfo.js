@@ -41,7 +41,7 @@ const ProfileInfo = () => {
             <StyledLabel>Name:</StyledLabel>
             <StyledText>{name}</StyledText>
             <StyledLabel>Favourite artist:</StyledLabel>
-            <CardText>{artist}</CardText>
+            <StyledText>{artist}</StyledText>
           </Form>
         </CardBody>
       </StyledCard>

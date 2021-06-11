@@ -6,10 +6,10 @@ import {
   CardBody,
   CardText,
   CardImg,
-  Button,
 } from "reactstrap";
-import { Link } from "react-router-dom";
 import styled from "styled-components";
+import SecondaryButton from "../buttons/SecondaryButton";
+import PrimaryLink from "../PrimaryLink";
 
 const StyledCard = styled(Card)`
   width: 650px;
@@ -28,11 +28,6 @@ const Image = styled(CardImg)`
   filter: grayscale(30%);
 `;
 
-const StyledButton = styled(Button)`
-  display: block;
-  margin-top: 20px;
-`;
-
 const CartItem = ({ id, title, image, duration, price, removeItem }) => {
   const handleRemoving = (id) => {
     removeItem(id);
@@ -44,8 +39,8 @@ const CartItem = ({ id, title, image, duration, price, removeItem }) => {
         <Title>{title}</Title>
         <CardSubtitle>{duration}</CardSubtitle>
         <CardText>{price}</CardText>
-        <Link to={`/course/${id}`}>View more</Link>
-        <StyledButton onClick={() => handleRemoving(id)}>Remove</StyledButton>
+        <PrimaryLink path={`/course/${id}`} text="View more" />
+        <SecondaryButton text="Remove" onClick={() => handleRemoving(id)} />
       </CardBody>
       <Image src={image} alt={title} />
     </StyledCard>

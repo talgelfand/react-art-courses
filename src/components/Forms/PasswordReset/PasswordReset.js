@@ -1,5 +1,4 @@
-import React, { useRef, useState, useContext } from "react";
-import { Link } from "react-router-dom";
+import React, { useRef, useState, useContext } from "react"
 import {
   Form,
   FormGroup,
@@ -9,21 +8,22 @@ import {
   Alert,
   Card,
   CardBody,
-} from "reactstrap";
-import styled from "styled-components";
-import { Context } from "../../../context/context";
+} from "reactstrap"
+import styled from "styled-components"
+import { Context } from "../../../context/context"
+import PrimaryButton from "../../buttons/PrimaryButton"
 
 const StyledCard = styled(Card)`
   margin-top: 30px;
-`;
+`
 
 const StyledLabel = styled(Label)`
   margin-top: 20px;
-`;
+`
 
 const StyledInput = styled(Input)`
   margin-top: 10px;
-`;
+`
 
 const StyledButton = styled(Button)`
   display: block;
@@ -31,29 +31,29 @@ const StyledButton = styled(Button)`
   margin-top: 30px;
   background-color: var(--accent-color);
   border: var(--accent-color);
-`;
+`
 
 const PasswordReset = () => {
-  const emailRef = useRef();
-  const { resetPassword } = useContext(Context);
-  const [error, setError] = useState("");
-  const [loading, setLoading] = useState(false);
-  const [message, setMessage] = useState("");
+  const emailRef = useRef()
+  const { resetPassword } = useContext(Context)
+  const [error, setError] = useState("")
+  const [loading, setLoading] = useState(false)
+  const [message, setMessage] = useState("")
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
+    e.preventDefault()
 
     try {
-      setMessage("");
-      setError("");
-      setLoading(true);
-      await resetPassword(emailRef.current.value);
-      setMessage("Check your inbox for further instructions");
+      setMessage("")
+      setError("")
+      setLoading(true)
+      await resetPassword(emailRef.current.value)
+      setMessage("Check your inbox for further instructions")
     } catch {
-      setError("Failed to reset password");
+      setError("Failed to reset password")
     }
-    setLoading(false);
-  };
+    setLoading(false)
+  }
 
   return (
     <StyledCard>
@@ -65,13 +65,20 @@ const PasswordReset = () => {
             <StyledLabel for="email">Email:</StyledLabel>
             <StyledInput innerRef={emailRef} type="email" id="email" />
           </FormGroup>
-          <StyledButton disabled={loading} type="submit">
+          <PrimaryButton
+            text="Reset"
+            disabled={loading}
+            type="submit"
+            centered
+            marginTop
+          />
+          {/* <StyledButton disabled={loading} type="submit">
             Reset
-          </StyledButton>
+          </StyledButton> */}
         </Form>
       </CardBody>
     </StyledCard>
-  );
-};
+  )
+}
 
-export default PasswordReset;
+export default PasswordReset
