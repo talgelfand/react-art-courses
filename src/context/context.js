@@ -1,5 +1,6 @@
 import React, { createContext, useEffect, useState } from "react"
-import { auth } from ".."
+import app, { auth } from "../firebase"
+import firebase from "firebase/app"
 
 const Context = createContext()
 
@@ -13,13 +14,24 @@ const ContextProvider = ({ children }) => {
   //   myCourses: [],
   //   info: { phone: "", name: "", artist: "" },
   // })
-  const [loading, setLoading] = useState(true)
+  const [authLoading, setAuthLoading] = useState(true)
   const [phone, setPhone] = useState("")
   const [name, setName] = useState("")
   const [artist, setArtist] = useState("")
 
+  const ref = firebase.firestore().collection("users")
+
   const signup = (email, password) => {
-    return auth.createUserWithEmailAndPassword(email, password)
+    return auth.createUserWithEmailAndPassword(email, password).then((cred) => {
+      return ref.doc(cred.user.uid).set({
+        email: email,
+        phone: phone,
+        name: name,
+        artist: artist,
+        cartItems: cartItems,
+        wishlistItems: wishlistItems,
+      })
+    })
   }
 
   const login = (email, password) => {
@@ -37,7 +49,7 @@ const ContextProvider = ({ children }) => {
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((user) => {
       setCurrentUser(user)
-      setLoading(false)
+      setAuthLoading(false)
     })
 
     return unsubscribe
@@ -63,7 +75,7 @@ const ContextProvider = ({ children }) => {
         setArtist,
       }}
     >
-      {!loading && children}
+      {!authLoading && children}
     </Context.Provider>
   )
 }

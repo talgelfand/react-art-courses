@@ -68,7 +68,7 @@ const Login = () => {
           />
           <PrimaryButton
             centered
-            marginTop
+            margintop
             text="Log in"
             disabled={loading}
             type="submit"

@@ -5,21 +5,21 @@ import styled from "styled-components"
 const StyledButton = styled(Button)`
   display: block;
   margin: ${(props) => (props.centered ? "auto" : "")};
-  margin-top: ${(props) => (props.marginTop ? "20px" : "0")};
+  margin-top: ${(props) => (props.margintop ? "20px" : "0")};
   background-color: var(--accent-color);
   border: var(--accent-color);
   &:hover {
     background-color: ${(props) =>
-      props.darkBg ? "var(--bg-color)" : "var(--dark-color)"};
+      props.darkbg ? "var(--bg-color)" : "var(--dark-color)"};
   }
 `
 
-const PrimaryButton = ({ text, clickEvent, darkBg, marginTop, centered }) => {
+const PrimaryButton = ({ text, clickEvent, darkbg, margintop, centered }) => {
   return (
     <StyledButton
       onClick={clickEvent}
-      darkBg={darkBg}
-      marginTop={marginTop}
+      darkbg={darkbg}
+      margintop={margintop}
       centered={centered}
     >
       {text}

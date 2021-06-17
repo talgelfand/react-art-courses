@@ -82,7 +82,7 @@ const Header = () => {
           <PrimaryButton
             text="Sign in"
             clickEvent={() => history.push("/login")}
-            darkBg={true}
+            darkbg={true}
           />
         )}
       </Menu>

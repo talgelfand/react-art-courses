@@ -60,7 +60,7 @@ const CourseCard = ({
   addToWishlist,
   addToCart,
 }) => {
-  const [isHovered, setIsHovered] = useState(true)
+  const [isHovered, setIsHovered] = useState(false)
 
   const handleHover = () => {
     setIsHovered(!isHovered)
@@ -108,7 +108,7 @@ const CourseCard = ({
         <Span>Duration:</Span> {duration}
       </Subtitle>
       <Subtitle>
-        <Span>Price:</Span> {price}
+        <Span>Price:</Span> {price + " euros"}
       </Subtitle>
       <Wrapper>
         <Icon>

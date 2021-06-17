@@ -8,6 +8,7 @@ import Title from "../../components/Title"
 import PrimaryButton from "../../components/buttons/PrimaryButton"
 import { add } from "../../utils/utils"
 import styled from "styled-components"
+import firebase from "firebase/app"
 
 const Content = styled.div`
   display: grid;
@@ -47,7 +48,10 @@ const SingleCourse = () => {
   const { id } = useParams()
   const course = data.courses.find((item) => item.id === parseInt(id))
 
-  const { cartItems, wishlistItems } = useContext(Context)
+  const { cartItems, wishlistItems, currentUser } = useContext(Context)
+
+  const ref = firebase.firestore().collection("users")
+  const user = firebase.auth().currentUser.uid
 
   if (!course) {
     return <Redirect to="/error" />
@@ -56,11 +60,13 @@ const SingleCourse = () => {
   const addToCart = () => {
     course.list = "cart"
     add(cartItems, course, "cart")
+    ref.doc(user).update({ cartItems: cartItems })
   }
 
   const addToWishlist = () => {
     course.list = "wishlist"
     add(wishlistItems, course)
+    ref.doc(user).update({ wishlistItems: wishlistItems })
   }
 
   const { title, image, duration, requirements, price } = course

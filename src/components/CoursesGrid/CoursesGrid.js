@@ -1,11 +1,12 @@
-import React, { useContext } from "react"
+import React, { useContext, useEffect, useState } from "react"
 import CourseCard from "../CourseCard/CourseCard"
-import * as data from "../../data/data.json"
 import styled from "styled-components"
 import { Context } from "../../context/context"
 import { ToastContainer } from "react-toastify"
 import "react-toastify/dist/ReactToastify.css"
 import { add } from "../../utils/utils"
+import Loading from "../Loading"
+import app from "../../firebase"
 
 const Section = styled.section`
   position: relative;
@@ -19,8 +20,35 @@ const Section = styled.section`
 
 const CoursesGrid = () => {
   const { cartItems, wishlistItems } = useContext(Context)
+  const [data, setData] = useState([])
+  const [loading, setLoading] = useState(false)
 
-  const courses = data.courses.map((course) => {
+  const ref = app.firestore().collection("courses")
+
+  const getCourses = () => {
+    setLoading(true)
+    ref.onSnapshot((querySnapshot) => {
+      const courses = []
+      querySnapshot.forEach((doc) => {
+        courses.push(doc.data())
+      })
+
+      setData(courses)
+      setLoading(false)
+    })
+  }
+
+  useEffect(() => {
+    getCourses()
+  }, [])
+
+  console.table(data)
+
+  if (loading) {
+    return <Loading />
+  }
+
+  const courses = data.map((course) => {
     const addToCart = () => {
       course.list = "cart"
       add(cartItems, course, "cart")
@@ -43,7 +71,7 @@ const CoursesGrid = () => {
 
   return (
     <Section>
-      {courses}
+      {courses || <Loading />}
       <ToastContainer />
     </Section>
   )

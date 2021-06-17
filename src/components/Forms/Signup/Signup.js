@@ -88,7 +88,7 @@ const Signup = () => {
             disabled={loading}
             type="submit"
             centered
-            marginTop
+            margintop
           />
         </Form>
       </CardBody>

@@ -1,7 +1,9 @@
-import React, { useContext } from "react";
-import { Card, CardBody, Form, CardTitle, Label, CardText } from "reactstrap";
-import styled from "styled-components";
-import { Context } from "../../context/context";
+import React, { useContext, useEffect, useState } from "react"
+import { Card, CardBody, Form, CardTitle, Label, CardText } from "reactstrap"
+import styled from "styled-components"
+import app, { auth } from "../../firebase"
+import { Context } from "../../context/context"
+import Loading from "../Loading"
 
 const StyledCard = styled(Card)`
   width: 500px;
@@ -9,24 +11,50 @@ const StyledCard = styled(Card)`
   margin: 0 auto;
   margin-top: 30px;
   padding: 20px;
-`;
+`
 
 const StyledTitle = styled(CardTitle)`
   text-align: center;
   font-size: 18px;
-`;
+`
 
 const StyledLabel = styled(Label)`
   font-weight: bold;
   margin-top: 15px;
-`;
+`
 
 const StyledText = styled(CardText)`
   margin-top: 15px;
-`;
+`
 
 const ProfileInfo = () => {
-  const { phone, name, artist, currentUser } = useContext(Context);
+  const { phone, name, artist, currentUser, setName, setPhone, setArtist } =
+    useContext(Context)
+  const [loading, setLoading] = useState(false)
+
+  const ref = app.firestore().collection("users")
+
+  const getUserData = () => {
+    setLoading(true)
+    ref
+      .doc(auth.currentUser.uid)
+      .get()
+      .then((doc) => {
+        setPhone(doc.data()["phone"])
+        setName(doc.data()["name"])
+        setArtist(doc.data()["artist"])
+      })
+
+    setLoading(false)
+  }
+
+  useEffect(() => {
+    getUserData()
+  }, [])
+
+  if (loading) {
+    return <Loading />
+  }
 
   return (
     <>
@@ -46,7 +74,7 @@ const ProfileInfo = () => {
         </CardBody>
       </StyledCard>
     </>
-  );
-};
+  )
+}
 
-export default ProfileInfo;
+export default ProfileInfo

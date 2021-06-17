@@ -1,9 +1,11 @@
-import React, { useContext } from "react"
+import React, { useContext, useEffect, useState } from "react"
 import { Context } from "../../context/context"
 import styled from "styled-components"
 import WishlistItem from "../../components/WishlistItem"
 import { Button } from "reactstrap"
 import Title from "../../components/Title"
+import app, { auth } from "../../firebase"
+import Loading from "../../components/Loading"
 
 const Section = styled.section`
   margin-top: 200px;
@@ -23,11 +25,31 @@ const StyledButton = styled(Button)`
 const Wishlist = () => {
   const { wishlistItems, setWishlistItems } = useContext(Context)
 
+  const [data, setData] = useState([])
+  const [loading, setLoading] = useState(false)
+
+  const ref = app.firestore().collection("users")
+
+  const getCourses = () => {
+    setLoading(true)
+    ref
+      .doc(auth.currentUser.uid)
+      .get()
+      .then((doc) => {
+        setData(doc.data()["wishlistItems"])
+      })
+    setLoading(false)
+  }
+
+  useEffect(() => {
+    getCourses()
+  }, [])
+
   const clearAllCourses = () => {
     setWishlistItems([])
   }
 
-  const courses = wishlistItems.map((item) => {
+  const courses = data.map((item) => {
     const removeItem = (id) => {
       const newItems = wishlistItems.filter((item) => item.id !== id)
       setWishlistItems(newItems)
@@ -35,6 +57,10 @@ const Wishlist = () => {
 
     return <WishlistItem key={item.id} {...item} removeItem={removeItem} />
   })
+
+  if (loading) {
+    return <Loading />
+  }
 
   if (courses.length === 0) {
     return <Title text="No courses saved to wishlist" />

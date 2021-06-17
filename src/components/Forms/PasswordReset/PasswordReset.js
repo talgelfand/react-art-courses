@@ -4,7 +4,6 @@ import {
   FormGroup,
   Input,
   Label,
-  Button,
   Alert,
   Card,
   CardBody,
@@ -23,14 +22,6 @@ const StyledLabel = styled(Label)`
 
 const StyledInput = styled(Input)`
   margin-top: 10px;
-`
-
-const StyledButton = styled(Button)`
-  display: block;
-  margin: 0 auto;
-  margin-top: 30px;
-  background-color: var(--accent-color);
-  border: var(--accent-color);
 `
 
 const PasswordReset = () => {
@@ -70,11 +61,8 @@ const PasswordReset = () => {
             disabled={loading}
             type="submit"
             centered
-            marginTop
+            margintop
           />
-          {/* <StyledButton disabled={loading} type="submit">
-            Reset
-          </StyledButton> */}
         </Form>
       </CardBody>
     </StyledCard>
