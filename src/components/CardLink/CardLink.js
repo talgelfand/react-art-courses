@@ -15,9 +15,9 @@ const StyledLink = styled(Link)`
   }
 `
 
-const CardLink = ({ path, text, bold }) => {
+const CardLink = ({ path, text, ...props }) => {
   return (
-    <StyledLink to={path} bold={bold}>
+    <StyledLink to={path} {...props}>
       {text}
     </StyledLink>
   )

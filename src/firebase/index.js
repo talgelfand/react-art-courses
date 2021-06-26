@@ -14,24 +14,6 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = firebase.initializeApp(firebaseConfig)
 
-// import app from ".."
-
-// const ref = app.firestore().collection("courses")
-
-// const getCourses = () => {
-//   const courses = []
-
-//   ref.onSnapshot((querySnapshot) => {
-//     querySnapshot.forEach((doc) => {
-//       courses.push(doc.data())
-//     })
-//   })
-
-//   return courses
-// }
-
-// export default getCourses
-
 export const auth = app.auth()
 
 export default app

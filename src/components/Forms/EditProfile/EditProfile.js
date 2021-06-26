@@ -1,8 +1,8 @@
-import React, { useContext } from "react"
+import React, { useContext, useRef } from "react"
 import { Card, CardBody, Form, Input, CardTitle, Label } from "reactstrap"
 import styled from "styled-components"
 import { Context } from "../../../context/context"
-import firebase from "firebase/app"
+import PrimaryButton from "../../buttons/PrimaryButton"
 
 const StyledCard = styled(Card)`
   width: 500px;
@@ -28,23 +28,30 @@ const StyledLabel = styled(Label)`
 `
 
 const EditProfile = () => {
-  const { phone, name, artist, setPhone, setName, setArtist, currentUser } =
-    useContext(Context)
+  const {
+    phone,
+    name,
+    artist,
+    setPhone,
+    setName,
+    setArtist,
+    currentUser,
+    user,
+  } = useContext(Context)
 
-  const ref = firebase.firestore().collection("users")
-  const user = firebase.auth().currentUser.uid
+  const nameRef = useRef()
+  const phoneRef = useRef()
+  const artistRef = useRef()
 
-  const handleNameSet = (e) => {
-    setName(e.target.value)
-    ref.doc(user).update({ name: name })
+  const handleChange = () => {
+    setName(nameRef.current.value)
+    setPhone(phoneRef.current.value)
+    setArtist(artistRef.current.value)
+    user.update({ name: name, phone: phone, artist: artist })
   }
-  const handlePhoneSet = (e) => {
-    setPhone(e.target.value)
-    ref.doc(user).update({ phone: phone })
-  }
-  const handleArtistsSet = (e) => {
-    setArtist(e.target.value)
-    ref.doc(user).update({ artist: artist })
+
+  const handleSubmit = () => {
+    user.update({ name: name, phone: phone, artist: artist })
   }
 
   return (
@@ -52,27 +59,28 @@ const EditProfile = () => {
       <StyledCard>
         <CardBody>
           <StyledTitle>Edit your profile</StyledTitle>
-          <Form onSubmit={(e) => e.preventDefault()}>
+          <Form onSubmit={handleSubmit}>
             <StyledLabel>Email:</StyledLabel>
             <StyledInput disabled value={currentUser.email} />
             <StyledLabel>Phone number:</StyledLabel>
             <StyledInput
+              innerRef={phoneRef}
               placeholder="Enter your phone number"
-              value={phone}
-              onChange={handlePhoneSet}
+              onChange={handleChange}
             />
             <StyledLabel>Name:</StyledLabel>
             <StyledInput
+              innerRef={nameRef}
               placeholder="Enter your name"
-              value={name}
-              onChange={handleNameSet}
+              onChange={handleChange}
             />
             <StyledLabel>Favourite artist:</StyledLabel>
             <StyledInput
+              innerRef={artistRef}
               placeholder="Enter the artist name"
-              value={artist}
-              onChange={handleArtistsSet}
+              onChange={handleChange}
             />
+            <PrimaryButton text="Submit" type="submit" margintop />
           </Form>
         </CardBody>
       </StyledCard>

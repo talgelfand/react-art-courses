@@ -4,8 +4,8 @@ import styled from "styled-components"
 import WishlistItem from "../../components/WishlistItem"
 import { Button } from "reactstrap"
 import Title from "../../components/Title"
-import app, { auth } from "../../firebase"
 import Loading from "../../components/Loading"
+import { remove } from "../../utils/utils"
 
 const Section = styled.section`
   margin-top: 200px;
@@ -23,35 +23,30 @@ const StyledButton = styled(Button)`
 `
 
 const Wishlist = () => {
-  const { wishlistItems, setWishlistItems } = useContext(Context)
-
-  const [data, setData] = useState([])
+  const { wishlistItems, setWishlistItems, user } = useContext(Context)
   const [loading, setLoading] = useState(false)
-
-  const ref = app.firestore().collection("users")
 
   const getCourses = () => {
     setLoading(true)
-    ref
-      .doc(auth.currentUser.uid)
-      .get()
-      .then((doc) => {
-        setData(doc.data()["wishlistItems"])
-      })
-    setLoading(false)
+    user.get().then((doc) => {
+      setWishlistItems(doc.data()["wishlistItems"])
+      setLoading(false)
+    })
   }
 
   useEffect(() => {
     getCourses()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   const clearAllCourses = () => {
+    user.update({ wishlistItems: [] })
     setWishlistItems([])
   }
 
-  const courses = data.map((item) => {
+  const courses = wishlistItems.map((item) => {
     const removeItem = (id) => {
-      const newItems = wishlistItems.filter((item) => item.id !== id)
+      const newItems = remove(user, wishlistItems, "wishlistItems", id, item)
       setWishlistItems(newItems)
     }
 

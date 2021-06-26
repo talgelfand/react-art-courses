@@ -64,7 +64,7 @@ const Login = () => {
           <PrimaryLink
             path="/reset-password"
             text="Forgot password?"
-            marginTop
+            margintop
           />
           <PrimaryButton
             centered

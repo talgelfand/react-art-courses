@@ -1,6 +1,5 @@
-import React, { useContext } from "react"
+import React, { useContext, useEffect, useState } from "react"
 import { Redirect, useParams } from "react-router-dom"
-import * as data from "../../data/data.json"
 import { Context } from "../../context/context"
 import { ToastContainer } from "react-toastify"
 import "react-toastify/dist/ReactToastify.css"
@@ -8,7 +7,8 @@ import Title from "../../components/Title"
 import PrimaryButton from "../../components/buttons/PrimaryButton"
 import { add } from "../../utils/utils"
 import styled from "styled-components"
-import firebase from "firebase/app"
+import app from "../../firebase"
+import Loading from "../../components/Loading"
 
 const Content = styled.div`
   display: grid;
@@ -45,13 +45,30 @@ const Wrapper = styled.div`
 `
 
 const SingleCourse = () => {
+  const { myCourses, user } = useContext(Context)
+  const [course, setCourse] = useState({})
+  const [loading, setLoading] = useState(false)
   const { id } = useParams()
-  const course = data.courses.find((item) => item.id === parseInt(id))
 
-  const { cartItems, wishlistItems, currentUser } = useContext(Context)
+  const { cartItems, wishlistItems } = useContext(Context)
 
-  const ref = firebase.firestore().collection("users")
-  const user = firebase.auth().currentUser.uid
+  const ref = app.firestore().collection("courses")
+
+  const getCourse = () => {
+    setLoading(true)
+    ref
+      .doc(id)
+      .get()
+      .then((doc) => {
+        setCourse(doc.data())
+        setLoading(false)
+      })
+  }
+
+  useEffect(() => {
+    getCourse()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   if (!course) {
     return <Redirect to="/error" />
@@ -59,14 +76,16 @@ const SingleCourse = () => {
 
   const addToCart = () => {
     course.list = "cart"
-    add(cartItems, course, "cart")
-    ref.doc(user).update({ cartItems: cartItems })
+    add(cartItems, myCourses, course, user)
   }
 
   const addToWishlist = () => {
     course.list = "wishlist"
-    add(wishlistItems, course)
-    ref.doc(user).update({ wishlistItems: wishlistItems })
+    add(wishlistItems, myCourses, course, user)
+  }
+
+  if (loading) {
+    return <Loading />
   }
 
   const { title, image, duration, requirements, price } = course
@@ -87,7 +106,7 @@ const SingleCourse = () => {
           </Subtitle>
           <Subtitle>
             <Span>Price: </Span>
-            {price}
+            {`${price} euros`}
           </Subtitle>
           <Text>
             But I must explain to you how all this mistaken idea of denouncing

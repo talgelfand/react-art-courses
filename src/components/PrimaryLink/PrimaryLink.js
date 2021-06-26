@@ -4,7 +4,7 @@ import styled from "styled-components"
 
 const StyledLink = styled(Link)`
   display: block;
-  margin-top: ${(props) => (props.marginTop ? "20px" : "0px")};
+  margin-top: ${(props) => (props.margintop ? "20px" : "0px")};
   font-weight: ${(props) => (props.bold ? "bold" : "normal")};
   color: var(--dark-color);
   &:hover {
@@ -12,9 +12,9 @@ const StyledLink = styled(Link)`
   }
 `
 
-const PrimaryLink = ({ path, text, marginTop, bold }) => {
+const PrimaryLink = ({ path, text, ...props }) => {
   return (
-    <StyledLink to={path} marginTop={marginTop} bold={bold}>
+    <StyledLink to={path} {...props}>
       {text}
     </StyledLink>
   )

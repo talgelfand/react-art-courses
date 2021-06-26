@@ -19,6 +19,7 @@ import Profile from "../pages/Profile"
 import { loadStripe } from "@stripe/stripe-js"
 import { Elements } from "@stripe/react-stripe-js"
 import Checkout from "../components/Forms/Checkout"
+import CheckoutSuccess from "../pages/CheckoutSuccess"
 
 const App = () => {
   const stripePromise = loadStripe(
@@ -30,7 +31,6 @@ const App = () => {
       <Router>
         <Header />
         <Switch>
-          {/* <PrivateRoute path="/" component={Header} /> */}
           <Route exact path="/" component={Main} />
           <Route path="/signup" component={SignupPage} />
           <Route path="/login" component={LoginPage} />
@@ -48,6 +48,7 @@ const App = () => {
               <Checkout />
             </Elements>
           </PrivateRoute>
+          <PrivateRoute path="/success" component={CheckoutSuccess} />
           <Route path="/course/:id" component={SingleCourse} />
           {/* id is a parameter */}
           <Route path="*" component={ErrorPage} />

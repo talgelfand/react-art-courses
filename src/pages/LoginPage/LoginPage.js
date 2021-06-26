@@ -32,7 +32,7 @@ const LoginPage = () => {
       <Login />
       <Subtitle>
         Don't have an account?
-        <PrimaryLink path="signup" text="Sign up" marginTop bold />
+        <PrimaryLink path="signup" text="Sign up" margintop bold />
       </Subtitle>
     </Section>
   )

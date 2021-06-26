@@ -19,49 +19,55 @@ const Section = styled.section`
 `
 
 const CoursesGrid = () => {
-  const { cartItems, wishlistItems } = useContext(Context)
-  const [data, setData] = useState([])
+  const {
+    allCourses,
+    setAllCourses,
+    cartItems,
+    wishlistItems,
+    myCourses,
+    user,
+  } = useContext(Context)
   const [loading, setLoading] = useState(false)
 
-  const ref = app.firestore().collection("courses")
+  const ref = app.firestore().collection("courses").orderBy("id")
 
   const getCourses = () => {
     setLoading(true)
-    ref.onSnapshot((querySnapshot) => {
-      const courses = []
-      querySnapshot.forEach((doc) => {
-        courses.push(doc.data())
+    ref.get().then((snapshot) => {
+      const data = []
+      snapshot.forEach((doc) => {
+        data.push(doc.data())
       })
 
-      setData(courses)
+      setAllCourses(data)
       setLoading(false)
     })
   }
 
   useEffect(() => {
     getCourses()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
-
-  console.table(data)
 
   if (loading) {
     return <Loading />
   }
 
-  const courses = data.map((course) => {
+  const courses = allCourses.map((course) => {
     const addToCart = () => {
       course.list = "cart"
-      add(cartItems, course, "cart")
+      add(cartItems, myCourses, course, user)
     }
 
     const addToWishlist = () => {
       course.list = "wishlist"
-      add(wishlistItems, course)
+      add(wishlistItems, myCourses, course, user)
     }
 
     return (
       <CourseCard
         key={course.id}
+        id={course.id}
         {...course}
         addToCart={addToCart}
         addToWishlist={addToWishlist}

@@ -1,7 +1,6 @@
 import React, { useContext, useEffect, useState } from "react"
 import { Card, CardBody, Form, CardTitle, Label, CardText } from "reactstrap"
 import styled from "styled-components"
-import app, { auth } from "../../firebase"
 import { Context } from "../../context/context"
 import Loading from "../Loading"
 
@@ -28,28 +27,32 @@ const StyledText = styled(CardText)`
 `
 
 const ProfileInfo = () => {
-  const { phone, name, artist, currentUser, setName, setPhone, setArtist } =
-    useContext(Context)
+  const {
+    phone,
+    name,
+    artist,
+    currentUser,
+    setName,
+    setPhone,
+    setArtist,
+    user,
+  } = useContext(Context)
   const [loading, setLoading] = useState(false)
-
-  const ref = app.firestore().collection("users")
 
   const getUserData = () => {
     setLoading(true)
-    ref
-      .doc(auth.currentUser.uid)
-      .get()
-      .then((doc) => {
-        setPhone(doc.data()["phone"])
-        setName(doc.data()["name"])
-        setArtist(doc.data()["artist"])
-      })
+    user.get().then((doc) => {
+      setPhone(doc.data()["phone"])
+      setName(doc.data()["name"])
+      setArtist(doc.data()["artist"])
+    })
 
     setLoading(false)
   }
 
   useEffect(() => {
     getUserData()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   if (loading) {

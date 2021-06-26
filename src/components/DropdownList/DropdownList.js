@@ -43,7 +43,6 @@ const DropdownList = () => {
         <DropdownItem>
           <PrimaryLink path="/profile" text="My profile" />
         </DropdownItem>
-        <DropdownItem>Settings</DropdownItem>
         <DropdownItem divider></DropdownItem>
         <DropdownItem onClick={handleLogout}>Log out</DropdownItem>
         {error && <DropdownItem disabled>{error}</DropdownItem>}

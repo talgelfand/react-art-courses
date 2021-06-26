@@ -39,9 +39,13 @@ const WishlistItem = ({ id, title, image, duration, price, removeItem }) => {
       <CardBody>
         <Title>{title}</Title>
         <CardSubtitle>{duration}</CardSubtitle>
-        <CardText>{price}</CardText>
+        <CardText>{`${price} euros`}</CardText>
         <PrimaryLink path={`/course/${id}`} text="View more" />
-        <SecondaryButton text="Remove" onClick={() => handleRemoving(id)} />
+        <SecondaryButton
+          text="Remove"
+          clickEvent={() => handleRemoving(id)}
+          margintop
+        />
       </CardBody>
       <Image src={image} alt={title} />
     </StyledCard>

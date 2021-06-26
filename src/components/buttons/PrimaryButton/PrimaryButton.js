@@ -14,14 +14,9 @@ const StyledButton = styled(Button)`
   }
 `
 
-const PrimaryButton = ({ text, clickEvent, darkbg, margintop, centered }) => {
+const PrimaryButton = ({ text, type, clickEvent, ...props }) => {
   return (
-    <StyledButton
-      onClick={clickEvent}
-      darkbg={darkbg}
-      margintop={margintop}
-      centered={centered}
-    >
+    <StyledButton onClick={clickEvent} type={type} {...props}>
       {text}
     </StyledButton>
   )

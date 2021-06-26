@@ -1,37 +1,44 @@
+import React, { useContext, useEffect, useState } from "react"
 import { CardElement, ElementsConsumer } from "@stripe/react-stripe-js"
-import React, { useEffect, useState } from "react"
+import { useHistory } from "react-router"
 import { Form } from "reactstrap"
-import app from "../../../firebase"
 import PrimaryButton from "../../buttons/PrimaryButton"
 import CardSection from "../../CardSection"
-import CartItem from "../../CartItem"
+import CheckoutItem from "../../CheckoutItem"
 import Loading from "../../Loading"
+import Title from "../../Title"
+import firebase from "firebase/app"
+import { Context } from "../../../context/context"
+import { remove } from "../../../utils/utils"
 
 const Checkout = ({ stripe, elements }) => {
-  const [data, setData] = useState([])
+  const { cartItems, setCartItems, wishlistItems, setWishlistItems, user } =
+    useContext(Context)
   const [loading, setLoading] = useState(false)
+  const history = useHistory()
 
-  const ref = app.firestore().collection("courses")
-
-  const getCourses = () => {
+  const getUserData = () => {
     setLoading(true)
-    ref.onSnapshot((querySnapshot) => {
-      const courses = []
-      querySnapshot.forEach((doc) => {
-        courses.push(doc.data())
-      })
-
-      setData(courses)
+    user.get().then((doc) => {
+      setCartItems(doc.data()["cartItems"])
+    })
+    user.get().then((doc) => {
+      setWishlistItems(doc.data()["wishlistItems"])
       setLoading(false)
     })
   }
 
   useEffect(() => {
-    getCourses()
+    getUserData()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
-  const courses = data.map((course) => {
-    return <CartItem key={course.id} {...course} />
+  const courses = cartItems.map((item) => {
+    const removeItem = (id) => {
+      const newItems = remove(user, cartItems, "cartItems", id, item)
+      setCartItems(newItems)
+    }
+    return <CheckoutItem key={item.id} {...item} removeItem={removeItem} />
   })
 
   const handleSubmit = async (e) => {
@@ -43,10 +50,32 @@ const Checkout = ({ stripe, elements }) => {
 
     const card = elements.getElement(CardElement)
     const result = await stripe.createToken(card)
+
     if (result.error) {
-      console.error(result.error.message)
+      history.push("/error")
     } else {
-      console.info(result.token)
+      cartItems.forEach((item) => {
+        const newItems = wishlistItems.filter((course) => {
+          return course.id !== item.id
+        })
+
+        setWishlistItems(newItems)
+
+        wishlistItems.forEach((course) => {
+          if (course.id === item.id) {
+            user.update({
+              wishlistItems: firebase.firestore.FieldValue.arrayRemove(course),
+            })
+          }
+        })
+
+        user.update({
+          myCourses: firebase.firestore.FieldValue.arrayUnion(item),
+        })
+      })
+
+      user.update({ cartItems: [] })
+      history.push("/success")
     }
   }
 
@@ -54,12 +83,22 @@ const Checkout = ({ stripe, elements }) => {
     return <Loading />
   }
 
+  if (courses.length === 0) {
+    return <Title text="No courses to buy" />
+  }
+
   return (
     <>
+      <Title text="Checkout" />
       {courses}
       <Form onSubmit={handleSubmit}>
         <CardSection />
-        <PrimaryButton margintop centered text="Buy now" />
+        <PrimaryButton
+          margintop
+          centered
+          text="Buy now"
+          clickEvent={handleSubmit}
+        />
       </Form>
     </>
   )
