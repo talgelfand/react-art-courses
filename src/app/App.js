@@ -28,7 +28,7 @@ const App = () => {
 
   return (
     <div className="App">
-      <Router>
+      <Router basename="/react-art-courses">
         <Header />
         <Switch>
           <Route exact path="/" component={Main} />
